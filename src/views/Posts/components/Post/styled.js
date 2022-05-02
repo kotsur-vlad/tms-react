@@ -1,30 +1,34 @@
 import styled from 'styled-components';
 
-export const PostCard = styled.div`
-  width: 352px;
+export const PostContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 
-  margin-bottom: 40px;
+	padding: 40px;
+
+	// для потомков
+	.post-title-for-children {
+		font-weight: 700;
+		font-size: 28px;
+	}
+
+	// для себя
+	&.post-title {
+		font-weight: 700;
+		font-size: 28px;
+	}
 `;
 
-export const PostPreview = styled.img`
-  width: 352px;
-  height: 246px;
+export const PostPreview = styled.img``;
 
-  margin-bottom: 24px;
+export const PostText = styled.div`
+	margin: 48px 0;
 `;
 
-export const PostDate = styled.div`
-  margin-bottom: 8px;
-
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #8D8E97;
-`;
-
-export const PostTitle = styled.div`
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 28px;
-  color: #313037;
+export const PostActions = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 `;

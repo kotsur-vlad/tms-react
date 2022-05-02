@@ -1,20 +1,28 @@
-import { PostCard, PostDate, PostPreview, PostTitle } from './styled';
-import { ImageDefaultPreview } from './../../../../assets';
+import { PostActions, PostContainer, PostPreview, PostText } from './styled';
+import { IconButton, LikeButton } from '../../../../common';
+import { IconBookmark } from '../../../../assets';
 
 export const Post = (props) => {
-  const { post, setLoading, loading } = props;
-
-  const addToFavoritesHandler = () => {
-    setLoading(!loading);
-  };
+  const { title, preview, text, isLiked } = props;
 
   return (
-    <PostCard>
-      <PostPreview src={post.image ? post.image : ImageDefaultPreview} />
-      <PostDate>{post.date}</PostDate>
-      <PostTitle>{post.title}</PostTitle>
+    <PostContainer>
+      <span className='post-title-for-children'>{title}</span>
+      <PostPreview src={preview} alt='post-preview' />
+      <PostText>{text}</PostText>
 
-      <button onClick={addToFavoritesHandler}>add to fav</button>
-    </PostCard>
+      <PostActions>
+        <div>
+          <LikeButton isLiked />
+          <LikeButton dislike isLiked />
+        </div>
+
+        <IconButton
+          icon={IconBookmark}
+          title='Add to favorites'
+          // onClick={}
+        />
+      </PostActions>
+    </PostContainer>
   );
 };
