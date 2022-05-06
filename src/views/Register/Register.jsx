@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, Input } from '../../common';
+import { Button, Input, Title } from '../../common';
 import { RegisterContainer } from './styled';
 
 export const Register = () => {
@@ -25,7 +25,7 @@ export const Register = () => {
     setConfirmPassword(event.target.value);
   };
 
-  const loginHandler = () => {
+  const registerHandler = () => {
     const loginData = {
       name,
       email,
@@ -37,6 +37,7 @@ export const Register = () => {
 
   return (
     <RegisterContainer>
+      <Title text="Sign Up" indent />
       <Input type="text" placeholder="Your name" value={name} onChange={nameValueHandler} />
       <Input type="text" placeholder="Your email" value={email} onChange={emailValueHandler} />
       <Input
@@ -52,7 +53,7 @@ export const Register = () => {
         onChange={confirmPasswordValueHandler}
       />
 
-      <Button title="Sign In" onClick={loginHandler} />
+      <Button title="Sign Up" onClick={registerHandler} />
     </RegisterContainer>
   );
 };

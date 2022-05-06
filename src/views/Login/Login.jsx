@@ -1,4 +1,4 @@
-import { Button, Input } from '../../common';
+import { Button, Input, Title } from '../../common';
 import { LoginContainer, Wrapper } from './styled';
 import { Counter } from './Counter';
 
@@ -15,6 +15,7 @@ export const Login = (props) => {
 
   return (
     <LoginContainer>
+      <Title text="Sign In" indent />
       <Input type="text" placeholder="Your email" value={email} onChange={emailValueHandler} />
       <Input
         type="password"
@@ -22,9 +23,7 @@ export const Login = (props) => {
         value={password}
         onChange={passwordValueHandler}
       />
-
       <Button title="Sign In" onClick={loginHandler} />
-
       <Counter count={count} incHandler={incHandler} />
       {/* <Wrapper> */}
       {/*  {count} */}

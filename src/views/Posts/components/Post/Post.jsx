@@ -1,5 +1,5 @@
 import { PostActions, PostContainer, PostPreview, PostText } from './styled';
-import { IconButton, LikeButton } from '../../../../common';
+import { IconButton, LikeButton, Title } from '../../../../common';
 import { IconBookmark } from '../../../../assets';
 
 export const Post = (props) => {
@@ -7,7 +7,7 @@ export const Post = (props) => {
 
   return (
     <PostContainer>
-      <span className="post-title-for-children">{title}</span>
+      <Title className="post-title-for-children" text={title} indent />
       <PostPreview src={preview} alt="post-preview" />
       <PostText>{text}</PostText>
 

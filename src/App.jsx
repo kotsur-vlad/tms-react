@@ -99,13 +99,13 @@ const App = () => {
       <Header userInfo={userInfo} />
       {/* <Button title="Fetch posts" onClick={fetchPostsHandler} /> */}
 
-      {/* <Register /> */}
+      <Register />
       {/* <Posts posts={posts} loading={loading} setLoading={setLoading} /> */}
       {/* <Post */}
-      {/*  title={posts[0].title} */}
-      {/*  preview={posts[0].image} */}
-      {/*  text={posts[0].text} */}
-      {/*  isLiked={posts[0].isLiked} */}
+      {/*   title={posts[0]?.title} */}
+      {/*   preview={posts[0]?.image} */}
+      {/*   text={posts[0]?.text} */}
+      {/*   isLiked={posts[0]?.isLiked} */}
       {/* /> */}
 
       <LoginContainer />
