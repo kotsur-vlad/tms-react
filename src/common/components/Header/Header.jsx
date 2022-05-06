@@ -1,10 +1,12 @@
 import Username from '../Username';
 import { StyledHeaderContainer } from './styled';
 
-export const Header = () => {
+export const Header = (props) => {
+  const { userInfo } = props;
+
   return (
     <StyledHeaderContainer>
-      <Username name="Ivan Ivanov" />
+      <Username name={userInfo?.username} />
     </StyledHeaderContainer>
   );
 };

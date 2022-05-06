@@ -1,22 +1,25 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { NoPosts, StyledPostsContainer } from './styled';
 import { PostCard } from './components/PostCard';
 
 export const Posts = (props) => {
-  const { posts } = props;
-
-  const [loading, setLoading] = useState('false');
+  const { posts, loading, setLoading } = props;
+  console.log(posts);
 
   const postsElements = posts.map((post) => {
     return <PostCard key={post.id} post={post} setLoading={setLoading} loading={loading} />;
   });
 
-  console.log(postsElements);
+  const memoPostsElements = useMemo(() => {
+    return posts.map((post) => (
+      <PostCard key={post.id} post={post} setLoading={setLoading} loading={loading} />
+    ));
+  }, [posts]);
 
   const hasPosts = !!posts.length;
   if (hasPosts) {
-    return <StyledPostsContainer>{postsElements}</StyledPostsContainer>;
+    return <StyledPostsContainer>{memoPostsElements}</StyledPostsContainer>;
   }
 
   return <NoPosts>No posts yet...</NoPosts>;

@@ -1,8 +1,17 @@
 import { Button, Input } from '../../common';
-import { LoginContainer } from './styled';
+import { LoginContainer, Wrapper } from './styled';
+import { Counter } from './Counter';
 
 export const Login = (props) => {
-  const { email, password, emailValueHandler, passwordValueHandler, loginHandler } = props;
+  const {
+    count,
+    incHandler,
+    email,
+    password,
+    emailValueHandler,
+    passwordValueHandler,
+    loginHandler,
+  } = props;
 
   return (
     <LoginContainer>
@@ -15,6 +24,12 @@ export const Login = (props) => {
       />
 
       <Button title="Sign In" onClick={loginHandler} />
+
+      <Counter count={count} incHandler={incHandler} />
+      {/* <Wrapper> */}
+      {/*  {count} */}
+      {/*  <Button title="Inc" onClick={incHandler} /> */}
+      {/* </Wrapper> */}
     </LoginContainer>
   );
 };
