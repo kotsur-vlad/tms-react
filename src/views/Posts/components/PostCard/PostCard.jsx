@@ -1,5 +1,5 @@
 import { PostCardContainer, PostDate, PostPreview, PostTitle } from './styled';
-import { ImageDefaultPreview } from './../../../../assets';
+import { ImageDefaultPreview } from '../../../../assets';
 
 export const PostCard = (props) => {
   const { post, setLoading, loading } = props;

@@ -37,23 +37,22 @@ export const Register = () => {
 
   return (
     <RegisterContainer>
-      <Input type='text' placeholder='Your name' value={name} onChange={nameValueHandler} />
-      <Input type='text' placeholder='Your email' value={email} onChange={emailValueHandler} />
+      <Input type="text" placeholder="Your name" value={name} onChange={nameValueHandler} />
+      <Input type="text" placeholder="Your email" value={email} onChange={emailValueHandler} />
       <Input
-        type='password'
-        placeholder='Your password'
+        type="password"
+        placeholder="Your password"
         value={password}
         onChange={passwordValueHandler}
       />
       <Input
-        type='password'
-        placeholder='Confirm password'
+        type="password"
+        placeholder="Confirm password"
         value={confirmPassword}
         onChange={confirmPasswordValueHandler}
       />
 
-      <Button title='Sign In' onClick={loginHandler} />
-
+      <Button title="Sign In" onClick={loginHandler} />
     </RegisterContainer>
   );
 };

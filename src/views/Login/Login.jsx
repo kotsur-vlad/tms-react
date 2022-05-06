@@ -6,16 +6,15 @@ export const Login = (props) => {
 
   return (
     <LoginContainer>
-      <Input type='text' placeholder='Your email' value={email} onChange={emailValueHandler} />
+      <Input type="text" placeholder="Your email" value={email} onChange={emailValueHandler} />
       <Input
-        type='password'
-        placeholder='Your password'
+        type="password"
+        placeholder="Your password"
         value={password}
         onChange={passwordValueHandler}
       />
 
-      <Button title='Sign In' onClick={loginHandler} />
-
+      <Button title="Sign In" onClick={loginHandler} />
     </LoginContainer>
   );
 };

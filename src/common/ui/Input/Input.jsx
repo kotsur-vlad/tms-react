@@ -1,7 +1,7 @@
 import { StyledInput } from './styled';
 
 export const Input = (props) => {
-  const { type, disabled, value, placeholder, onChange} = props;
+  const { type, disabled, value, placeholder, onChange } = props;
 
   return (
     <StyledInput

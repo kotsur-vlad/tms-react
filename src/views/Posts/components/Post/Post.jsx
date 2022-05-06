@@ -7,8 +7,8 @@ export const Post = (props) => {
 
   return (
     <PostContainer>
-      <span className='post-title-for-children'>{title}</span>
-      <PostPreview src={preview} alt='post-preview' />
+      <span className="post-title-for-children">{title}</span>
+      <PostPreview src={preview} alt="post-preview" />
       <PostText>{text}</PostText>
 
       <PostActions>
@@ -19,7 +19,7 @@ export const Post = (props) => {
 
         <IconButton
           icon={IconBookmark}
-          title='Add to favorites'
+          title="Add to favorites"
           // onClick={}
         />
       </PostActions>

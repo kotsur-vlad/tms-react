@@ -1,10 +1,7 @@
-import { StyledUsername } from './styled'
+import { StyledUsername } from './styled';
 
 export const Username = (props) => {
+  const { name } = props;
 
-  return (
-    <StyledUsername>
-      Hello, {props.name}!
-    </StyledUsername>
-  );
-}
+  return <StyledUsername>Hello, {name}!</StyledUsername>;
+};

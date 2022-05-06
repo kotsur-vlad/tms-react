@@ -1,0 +1,64 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "plugins": [],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-alert": "warn",
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-unused-vars": "warn",
+    "no-constant-condition": "warn",
+    "no-unsafe-optional-chaining": "warn",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+
+    "import/prefer-default-export": "off",
+
+    "react/button-has-type": "off",
+    "react/function-component-definition": "off",
+    "react/display-name": "off",
+    "react/jsx-boolean-value": [
+      "error",
+      "never"
+    ],
+    "react/jsx-filename-extension": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-uses-react": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+
+    "prettier/prettier": "error"
+  }
+}

@@ -17,7 +17,7 @@ export const LoginContainer = () => {
   const loginHandler = () => {
     const loginData = {
       email,
-      password: password,
+      password,
     };
     console.log('We logged in, with this data:', loginData);
   };
@@ -29,5 +29,6 @@ export const LoginContainer = () => {
       emailValueHandler={emailValueHandler}
       passwordValueHandler={passwordValueHandler}
       loginHandler={loginHandler}
-    />);
+    />
+  );
 };

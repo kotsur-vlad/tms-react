@@ -7,7 +7,7 @@ export const LikeButton = (props) => {
   return (
     <StyledLikeButton>
       <ButtonImage src={IconLike} className={dislike ? 'dislike' : ''} />
-      {/*{dislike ? <ButtonImage src={IconDisLike}/> : <ButtonImage src={IconLike}/>}*/}
+      {/* {dislike ? <ButtonImage src={IconDisLike}/> : <ButtonImage src={IconLike}/>} */}
     </StyledLikeButton>
   );
 };
