@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { Button, Input, Title } from '../../common';
-import { RegisterContainer } from './styled';
+import { Button, Input, Link, Title } from '../../common';
+import { HaveAccount, RegisterContainer } from './styled';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -26,13 +26,13 @@ export const Register = () => {
   };
 
   const registerHandler = () => {
-    const loginData = {
+    const registerData = {
       name,
       email,
       password,
       confirmPassword,
     };
-    console.log('Registration request was sent, with this data:', loginData);
+    console.log('Registration request was sent, with this data:', registerData);
   };
 
   return (
@@ -52,8 +52,11 @@ export const Register = () => {
         value={confirmPassword}
         onChange={confirmPasswordValueHandler}
       />
-
       <Button title="Sign Up" onClick={registerHandler} />
+
+      <HaveAccount>
+        Already have an account? <Link text="Sign In" />
+      </HaveAccount>
     </RegisterContainer>
   );
 };

@@ -10,3 +10,12 @@ export const RegisterContainer = styled.div`
   border: 1px solid #dadada;
   background-color: #dadada;
 `;
+
+export const HaveAccount = styled.div`
+  margin-top: 24px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: ${({ theme }) => theme.palette.background.gray};
+`;

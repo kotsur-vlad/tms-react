@@ -8,6 +8,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import Posts from './views/Posts';
 import { Post } from './views/Posts/components/Post/Post';
+import { ResetPassword } from './views/ResetPassword/ResetPassword';
 
 const postsFromAPI = [
   {
@@ -98,6 +99,8 @@ const App = () => {
     <Main>
       <Header userInfo={userInfo} />
       {/* <Button title="Fetch posts" onClick={fetchPostsHandler} /> */}
+
+      <ResetPassword />
 
       <Register />
       {/* <Posts posts={posts} loading={loading} setLoading={setLoading} /> */}

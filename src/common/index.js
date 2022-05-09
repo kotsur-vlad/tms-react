@@ -7,5 +7,6 @@ import TextArea from './ui/TextArea';
 import LikeButton from './ui/LikeButton';
 import IconButton from './ui/IconButton';
 import Title from './ui/Title';
+import Link from './ui/Link';
 
-export { Header, Username, Button, Input, TextArea, LikeButton, IconButton, Title };
+export { Header, Username, Button, Input, TextArea, LikeButton, IconButton, Title, Link };
