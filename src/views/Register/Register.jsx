@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Button, Input, Link, Title } from '../../common';
 import { HaveAccount, RegisterContainer } from './styled';
@@ -9,21 +9,21 @@ export const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const nameValueHandler = (event) => {
+  const nameValueHandler = useCallback((event) => {
     setName(event.target.value);
-  };
+  }, []);
 
-  const emailValueHandler = (event) => {
+  const emailValueHandler = useCallback((event) => {
     setEmail(event.target.value);
-  };
+  }, []);
 
-  const passwordValueHandler = (event) => {
+  const passwordValueHandler = useCallback((event) => {
     setPassword(event.target.value);
-  };
+  }, []);
 
-  const confirmPasswordValueHandler = (event) => {
+  const confirmPasswordValueHandler = useCallback((event) => {
     setConfirmPassword(event.target.value);
-  };
+  }, []);
 
   const registerHandler = () => {
     const registerData = {

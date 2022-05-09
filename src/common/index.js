@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Username from './components/Username';
+import Footer from './components/Footer';
 
 import Button from './ui/Button';
 import Input from './ui/Input';
@@ -9,4 +10,4 @@ import IconButton from './ui/IconButton';
 import Title from './ui/Title';
 import Link from './ui/Link';
 
-export { Header, Username, Button, Input, TextArea, LikeButton, IconButton, Title, Link };
+export { Header, Username, Footer, Button, Input, TextArea, LikeButton, IconButton, Title, Link };

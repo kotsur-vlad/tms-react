@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Button, Header } from './common';
+import { Button, Footer, Header } from './common';
 import Main from './views/Main';
 
 import { LoginContainer } from './views/Login/LoginContainer';
@@ -112,6 +112,7 @@ const App = () => {
       {/* /> */}
 
       <LoginContainer />
+      <Footer />
     </Main>
   );
 };
