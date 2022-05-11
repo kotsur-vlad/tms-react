@@ -113,7 +113,7 @@ const App = () => {
       {/*   isLiked={posts[0]?.isLiked} */}
       {/* /> */}
 
-      {/* <LoginContainer /> */}
+      <LoginContainer />
       <Footer />
     </Main>
   );

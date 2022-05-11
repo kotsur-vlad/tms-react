@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { Login } from './Login';
+import { useInputValue } from '../../utils/hooks/useInputValue';
 
 export const LoginContainer = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, emailHandler] = useInputValue();
+  const [password, passwordHandler] = useInputValue();
 
   const [count, setCount] = useState(0);
 
@@ -22,15 +23,6 @@ export const LoginContainer = () => {
     someFunc();
   }, []);
 
-  //
-  const emailValueHandler = useCallback((event) => {
-    setEmail(event.target.value);
-  }, []);
-
-  const passwordValueHandler = useCallback((event) => {
-    setPassword(event.target.value);
-  }, []);
-
   const loginHandler = () => {
     const loginData = {
       email,
@@ -45,8 +37,8 @@ export const LoginContainer = () => {
       incHandler={incHandler}
       email={email}
       password={password}
-      emailValueHandler={emailValueHandler}
-      passwordValueHandler={passwordValueHandler}
+      emailValueHandler={emailHandler}
+      passwordValueHandler={passwordHandler}
       loginHandler={loginHandler}
     />
   );

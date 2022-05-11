@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Button, Input, Title } from '../../common';
 import { EmailReceived, ResetPasswordContainer } from './styled';
+import { useInputValue } from '../../utils/hooks/useInputValue';
 
 export const ResetPassword = () => {
-  const [email, setEmail] = useState('');
+  const [email, emailHandler] = useInputValue();
+
   const [emailSentShown, setEmailSentShown] = useState('');
 
   const inputRef = useRef(null);
@@ -27,10 +29,6 @@ export const ResetPassword = () => {
 
   const countRefHandler = () => {
     countRef.current += 1;
-  };
-
-  const emailValueHandler = (event) => {
-    setEmail(event.target.value);
   };
 
   const resetPasswordHandler = () => {
@@ -63,14 +61,14 @@ export const ResetPassword = () => {
         type="text"
         placeholder="Your email"
         value={email}
-        onChange={emailValueHandler}
+        onChange={emailHandler}
       />
       {/* <input */}
       {/*   ref={inputRef} */}
       {/*   type="text" */}
       {/*   placeholder="Your email" */}
       {/*   value={email} */}
-      {/*   onChange={emailValueHandler} */}
+      {/*   onChange={emailHandler} */}
       {/* /> */}
       {/* <Button title="Focus" onClick={focusHandler} /> */}
       <Button title="Reset" onClick={resetPasswordHandler} />
