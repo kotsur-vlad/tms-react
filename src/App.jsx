@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Button, Footer, Header } from './common';
 import Main from './views/Main';
@@ -9,6 +9,7 @@ import Register from './views/Register';
 import Posts from './views/Posts';
 import { Post } from './views/Posts/components/Post/Post';
 import { ResetPassword } from './views/ResetPassword/ResetPassword';
+import { LanguageContext } from './context/LanguageContext';
 
 const postsFromAPI = [
   {
@@ -50,10 +51,11 @@ const userInfoFromAPI = {
 };
 
 const App = () => {
+  const contextValue = useContext(LanguageContext);
+
   const [loading, setLoading] = useState('false');
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
-  // const [fetch, setFetch] = useState(false);
 
   //
   // Пустой массив зависимостей - сработает только 1 раз при 1-м рендере
@@ -102,7 +104,7 @@ const App = () => {
 
       <ResetPassword />
 
-      <Register />
+      {/* <Register /> */}
       {/* <Posts posts={posts} loading={loading} setLoading={setLoading} /> */}
       {/* <Post */}
       {/*   title={posts[0]?.title} */}
@@ -111,7 +113,7 @@ const App = () => {
       {/*   isLiked={posts[0]?.isLiked} */}
       {/* /> */}
 
-      <LoginContainer />
+      {/* <LoginContainer /> */}
       <Footer />
     </Main>
   );

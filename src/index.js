@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import 'normalize.css';
 import './assets/fonts/Inter/inter.css';
 
+import { LanguageProvider } from './context/LanguageContext';
 import { theme, GlobalStyles } from './styles';
 import App from './App';
 
@@ -12,9 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <App />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <App />
+      </ThemeProvider>
+    </LanguageProvider>
   </React.StrictMode>
 );

@@ -1,29 +1,17 @@
-import { useCallback, useState } from 'react';
-
 import { Button, Input, Link, Title } from '../../common';
 import { HaveAccount, RegisterContainer } from './styled';
+import { useInputValue } from '../../utils/hooks/useInputValue';
 
 export const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const validator = (value) => {
+    const newValue = `${value}!`;
+    return newValue;
+  };
 
-  const nameValueHandler = useCallback((event) => {
-    setName(event.target.value);
-  }, []);
-
-  const emailValueHandler = useCallback((event) => {
-    setEmail(event.target.value);
-  }, []);
-
-  const passwordValueHandler = useCallback((event) => {
-    setPassword(event.target.value);
-  }, []);
-
-  const confirmPasswordValueHandler = useCallback((event) => {
-    setConfirmPassword(event.target.value);
-  }, []);
+  const [name, nameHandler] = useInputValue();
+  const [email, emailHandler] = useInputValue(validator);
+  const [password, passwordHandler] = useInputValue();
+  const [confirmPassword, confirmPasswordHandler] = useInputValue();
 
   const registerHandler = () => {
     const registerData = {
@@ -38,20 +26,22 @@ export const Register = () => {
   return (
     <RegisterContainer>
       <Title text="Sign Up" indent />
-      <Input type="text" placeholder="Your name" value={name} onChange={nameValueHandler} />
-      <Input type="text" placeholder="Your email" value={email} onChange={emailValueHandler} />
+
+      <Input type="text" placeholder="Your name" value={name} onChange={nameHandler} />
+      <Input type="text" placeholder="Your email" value={email} onChange={emailHandler} />
       <Input
         type="password"
         placeholder="Your password"
         value={password}
-        onChange={passwordValueHandler}
+        onChange={passwordHandler}
       />
       <Input
         type="password"
         placeholder="Confirm password"
         value={confirmPassword}
-        onChange={confirmPasswordValueHandler}
+        onChange={confirmPasswordHandler}
       />
+
       <Button title="Sign Up" onClick={registerHandler} />
 
       <HaveAccount>
