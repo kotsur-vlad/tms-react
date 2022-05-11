@@ -9,7 +9,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { theme, GlobalStyles } from './styles';
 import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
   <React.StrictMode>
