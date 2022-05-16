@@ -6,7 +6,7 @@
       "esnext"
     ],
     "module": "esnext",
-    "target": "es2015",
+    "target": "es5",
 
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -29,9 +29,9 @@
     "noUncheckedIndexedAccess": true,
     "useUnknownInCatchVariables": true
 
-//    "baseUrl": "./src",
   },
+
   "include": [
-    "src/**/*"
+    "src"
   ]
 }
