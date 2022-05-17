@@ -1,26 +1,15 @@
-import { useEffect, useState } from 'react';
 import { Button, Input, Link, Title } from '../../common';
 import { ForgotPass, HaveAccount, LoginContainer } from './styled';
-import { Counter } from './Counter';
 
 export const Login = (props) => {
   const {
-    count,
-    incHandler,
     email,
     password,
     emailValueHandler,
     passwordValueHandler,
     loginHandler,
+    welcomeTextShown,
   } = props;
-
-  const [welcomeTextShown, setWelcomeTextShown] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setWelcomeTextShown(true);
-    }, 2000);
-  }, []);
 
   return (
     <LoginContainer>
@@ -44,12 +33,6 @@ export const Login = (props) => {
       <HaveAccount>
         Don’t have an account? <Link text="Sign Up" />
       </HaveAccount>
-
-      <Counter count={count} incHandler={incHandler} />
-      {/* <Wrapper> */}
-      {/*  {count} */}
-      {/*  <Button title="Inc" onClick={incHandler} /> */}
-      {/* </Wrapper> */}
     </LoginContainer>
   );
 };

@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 
 import { LanguageContext } from '../../../context/LanguageContext';
-import Username from '../Username';
-import { StyledHeaderContainer } from './styled';
 import Button from '../../ui/Button';
+import { Username } from '../Username';
+import { Menu } from '../Menu';
+import { StyledHeaderContainer } from './styled';
 
 export const Header = (props) => {
-  const { userInfo } = props;
+  const { user } = props;
 
   const { changeLang } = useContext(LanguageContext);
 
@@ -16,9 +17,11 @@ export const Header = (props) => {
 
   return (
     <StyledHeaderContainer>
+      <Menu />
+
       <Button title="change language" onClick={changeLanguageHandler} />
 
-      <Username name={userInfo?.username} />
+      <Username name={user?.username} />
     </StyledHeaderContainer>
   );
 };

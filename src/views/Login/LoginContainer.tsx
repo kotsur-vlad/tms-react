@@ -1,27 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Login } from './Login';
 import { useInputValue } from '../../utils/hooks/useInputValue';
 
-export const LoginContainer = () => {
+export const LoginContainer: FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [welcomeTextShown, setWelcomeTextShown] = useState(false);
   const [email, emailHandler] = useInputValue();
   const [password, passwordHandler] = useInputValue();
-
-  const [count, setCount] = useState(0);
-
-  const incHandler = useCallback(() => {
-    setCount((prevState) => {
-      return prevState + 3;
-    });
-  }, []);
-
-  const someFunc = useCallback(() => {
-    console.log('Login rendered', email);
-  }, [email]);
-
-  useEffect(() => {
-    someFunc();
-  }, []);
 
   const loginHandler = () => {
     const loginData = {
@@ -29,17 +18,23 @@ export const LoginContainer = () => {
       password,
     };
     console.log('We logged in, with this data:', loginData);
+    navigate('/', { replace: true, state: { from: location } });
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setWelcomeTextShown(true);
+    }, 2000);
+  }, []);
 
   return (
     <Login
-      count={count}
-      incHandler={incHandler}
       email={email}
       password={password}
       emailValueHandler={emailHandler}
       passwordValueHandler={passwordHandler}
       loginHandler={loginHandler}
+      welcomeTextShown={welcomeTextShown}
     />
   );
 };

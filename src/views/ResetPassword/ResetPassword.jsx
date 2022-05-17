@@ -15,7 +15,6 @@ export const ResetPassword = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log('component rendered');
     inputRef.current.focus();
   });
 

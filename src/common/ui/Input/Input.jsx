@@ -6,8 +6,6 @@ export const Input = React.memo(
   React.forwardRef((props, ref) => {
     const { type, disabled, value, placeholder, onChange } = props;
 
-    console.log('Input rendered');
-
     return (
       <StyledInput
         ref={ref}

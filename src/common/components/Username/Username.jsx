@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import { memo, useContext } from 'react';
 
 import { StyledUsername } from './styled';
 import { LanguageContext } from '../../../context/LanguageContext';
 
-export const Username = React.memo((props) => {
+export const Username = memo((props) => {
   const { name } = props;
 
   const { lang } = useContext(LanguageContext);

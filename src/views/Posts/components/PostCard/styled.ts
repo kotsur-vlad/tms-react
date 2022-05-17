@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const PostCardContainer = styled.div`
   width: 352px;
@@ -22,7 +23,7 @@ export const PostDate = styled.div`
   color: #8d8e97;
 `;
 
-export const PostTitle = styled.div`
+export const PostTitle = styled(Link)`
   font-weight: 600;
   font-size: 18px;
   line-height: 28px;
