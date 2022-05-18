@@ -8,6 +8,12 @@ export const menuItems: MenuModel[] = [
     private: false,
   },
   {
+    name: 'addPost',
+    title: 'Add Post',
+    path: '/add-post',
+    private: false,
+  },
+  {
     name: 'posts',
     title: 'Posts',
     path: 'posts',
