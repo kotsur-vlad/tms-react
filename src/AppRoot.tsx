@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -7,8 +8,9 @@ import './assets/fonts/Inter/inter.css';
 import { LanguageProvider } from './context/LanguageContext';
 import { GlobalStyles, theme } from './styles';
 import { Routes } from './router/Routes';
+import { store } from './store';
 
-const store = {
+export const _store = {
   auth: true,
   posts: [
     {
@@ -24,7 +26,7 @@ const store = {
     },
     {
       id: 2,
-      image: 'https://tms-studapi-dev.s3.amazonaws.com/media/unnamed_MQSTowL.jpeg',
+      image: 'https://www.sitesaga.com/wp-content/uploads/2020/04/whatisablog.png',
       text: 'Second post text...',
       date: '2021-02-10',
       lesson_num: 123,
@@ -52,14 +54,16 @@ const store = {
 export const AppRoot: FC = () => {
   return (
     <React.StrictMode>
-      <BrowserRouter>
-        <LanguageProvider>
-          <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <Routes store={store} />
-          </ThemeProvider>
-        </LanguageProvider>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <LanguageProvider>
+            <ThemeProvider theme={theme}>
+              <GlobalStyles />
+              <Routes store={_store} />
+            </ThemeProvider>
+          </LanguageProvider>
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>
   );
 };

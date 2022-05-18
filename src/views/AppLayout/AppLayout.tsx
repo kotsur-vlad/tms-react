@@ -9,12 +9,10 @@ interface AppLayoutProps {
   user: UserModel;
 }
 
-export const AppLayout: FC<AppLayoutProps> = (props) => {
-  const { user } = props;
-
+export const AppLayout: FC = () => {
   return (
     <AppLayoutContainer>
-      <Header user={user} />
+      <Header />
 
       <Outlet />
 

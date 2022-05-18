@@ -20,7 +20,7 @@ const postsFromAPI = [
   },
   {
     id: 2,
-    image: 'https://tms-studapi-dev.s3.amazonaws.com/media/unnamed_MQSTowL.jpeg',
+    image: 'https://www.sitesaga.com/wp-content/uploads/2020/04/whatisablog.png',
     text: 'Second post text...',
     date: '2021-02-10',
     lesson_num: 123,

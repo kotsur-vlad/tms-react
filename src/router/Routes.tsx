@@ -14,13 +14,13 @@ export const Routes: FC<RoutesProps> = (props) => {
 
   return (
     <RoutesSource>
-      <Route path="/" element={<AppLayout user={store.user} />}>
+      <Route path="/" element={<AppLayout />}>
         <Route index element={<div>HOME PAGE</div>} />
 
         {/*Первый вариант - обернуть защищаемые страницы Роутом, у которого*/}
         {/*в качестве element передан наш ProtectedRoute*/}
         <Route element={<ProtectedRoute isAllow={store.auth} pathToRedirect="/" />}>
-          <Route path="posts" element={<Posts posts={store.posts} />} />
+          <Route path="posts" element={<Posts />} />
           <Route path="posts/:postId" element={<Post />} />
         </Route>
 
