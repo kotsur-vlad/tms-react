@@ -2,7 +2,16 @@ import { FC } from 'react';
 import { Route, Routes as RoutesSource } from 'react-router-dom';
 
 import { ProtectedRoute } from './ProtectedRoute';
-import { AddPost, AppLayout, LoginContainer, Post, Posts, Register, ResetPassword } from '../views';
+import {
+  AddPost,
+  AppLayout,
+  LoginContainer,
+  Page404,
+  Post,
+  Posts,
+  Register,
+  ResetPassword,
+} from '../views';
 import type { TODO_ANY } from '../types';
 
 interface RoutesProps {
@@ -47,6 +56,8 @@ export const Routes: FC<RoutesProps> = (props) => {
         <Route path="login" element={<LoginContainer />} />
         <Route path="register" element={<Register />} />
         <Route path="reset-password" element={<ResetPassword />} />
+
+        <Route path="*" element={<Page404 />} />
       </Route>
     </RoutesSource>
   );

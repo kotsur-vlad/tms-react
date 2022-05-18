@@ -1,7 +1,8 @@
-import { ChangeEvent, FC, ForwardedRef, forwardRef, memo } from 'react';
+import { InputHTMLAttributes, ChangeEvent, FC, ForwardedRef, forwardRef, memo } from 'react';
 
 import { StyledInput } from './styled';
 
+// interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 interface InputProps {
   ref?: ForwardedRef<HTMLInputElement>;
   type: string;
