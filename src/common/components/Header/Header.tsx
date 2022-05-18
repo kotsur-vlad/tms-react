@@ -1,15 +1,20 @@
-import { useContext } from 'react';
+import { FC } from 'react';
 
-import { LanguageContext } from '../../../context/LanguageContext';
-import Button from '../../ui/Button';
+import { useLanguage } from '../../../context/LanguageContext';
+import { Button } from '../../ui/Button';
 import { Username } from '../Username';
 import { Menu } from '../Menu';
 import { StyledHeaderContainer } from './styled';
+import type { UserModel } from '../../../types';
 
-export const Header = (props) => {
+interface HeaderProps {
+  user: UserModel;
+}
+
+export const Header: FC<HeaderProps> = (props) => {
   const { user } = props;
 
-  const { changeLang } = useContext(LanguageContext);
+  const { changeLang } = useLanguage();
 
   const changeLanguageHandler = () => {
     changeLang();

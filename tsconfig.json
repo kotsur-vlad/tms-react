@@ -8,7 +8,7 @@
     "module": "esnext",
     "target": "es5",
 
-    "allowJs": true,
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
 
-    "strict": false,
+    "strict": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "noImplicitOverride": true,

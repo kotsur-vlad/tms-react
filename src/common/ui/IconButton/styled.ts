@@ -14,7 +14,7 @@ export const StyledButton = styled.button`
   font-size: 18px;
   line-height: 133%;
 
-  color: ${(props) => props.theme.palette.system.secondary};
+  color: ${({ theme }) => theme.palette.system.secondary};
 `;
 
 export const Icon = styled.img`

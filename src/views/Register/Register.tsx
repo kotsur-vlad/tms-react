@@ -1,33 +1,31 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Button, Input, Link, Title } from '../../common';
-import { HaveAccount, RegisterContainer } from './styled';
 import { useInputValue } from '../../utils/hooks/useInputValue';
+import { HaveAccount, RegisterContainer } from './styled';
 
-export const Register = () => {
+export const Register: FC = () => {
   const location = useLocation();
+  console.log('search params from location:', location.search);
+
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // console.log(location.search);
-  console.log(searchParams.get('test'));
-
-  const validator = (value) => {
-    const newValue = `${value}!`;
-    return newValue;
-  };
+  console.log('search params from searchParams:', searchParams.toString());
 
   const [name, nameHandler] = useInputValue();
-  const [email, emailHandler] = useInputValue(validator);
+  const [email, emailHandler] = useInputValue();
   const [password, passwordHandler] = useInputValue();
   const [confirmPassword, confirmPasswordHandler] = useInputValue();
 
+  // Если мы получаем какие-то данные из searchParams
+  // Например, код для авторизации после редиректа с другого сайта
+  // А после сохранения кода, хотим занулить searchParams в адресной строке
   const [code, setCode] = useState('');
-  console.log(code);
-
   useEffect(() => {
-    if (searchParams.get('code')) {
-      setCode(searchParams.get('code'));
+    const code = searchParams.get('code');
+    if (code) {
+      setCode(code);
+      console.log('code from searchParams:', code);
       setSearchParams('', { replace: true });
     }
   }, []);

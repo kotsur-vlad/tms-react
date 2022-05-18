@@ -3,10 +3,10 @@ import { Outlet } from 'react-router-dom';
 
 import { Footer, Header } from '../../common';
 import { AppLayoutContainer } from './styled';
-import type { TODO_ANY } from '../../types';
+import type { UserModel } from '../../types';
 
 interface AppLayoutProps {
-  user: TODO_ANY;
+  user: UserModel;
 }
 
 export const AppLayout: FC<AppLayoutProps> = (props) => {

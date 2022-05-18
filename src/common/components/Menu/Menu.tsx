@@ -6,6 +6,7 @@ import { MenuItem, MenuLink, MenuNavLink, MenuWrapper } from './styled';
 import type { MenuModel } from '../../../router/types';
 
 export const Menu: FC = () => {
+  // @ts-ignore
   const active = ({ isActive }) => (isActive ? { color: 'red' } : undefined);
 
   const menuElements = menuItems.map((m: MenuModel) => {

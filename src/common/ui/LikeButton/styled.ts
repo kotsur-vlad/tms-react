@@ -11,7 +11,7 @@ export const StyledLikeButton = styled.button`
 `;
 
 export const ButtonImage = styled.img`
-  &.dislike {
+  &.disLike {
     transform: rotate(180deg);
   }
 `;

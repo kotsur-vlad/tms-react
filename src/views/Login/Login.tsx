@@ -1,7 +1,18 @@
+import { ChangeEvent, FC } from 'react';
+
 import { Button, Input, Link, Title } from '../../common';
 import { ForgotPass, HaveAccount, LoginContainer } from './styled';
 
-export const Login = (props) => {
+interface LoginProps {
+  email: string;
+  password: string;
+  emailValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  passwordValueHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  loginHandler: () => void;
+  welcomeTextShown: boolean;
+}
+
+export const Login: FC<LoginProps> = (props) => {
   const {
     email,
     password,

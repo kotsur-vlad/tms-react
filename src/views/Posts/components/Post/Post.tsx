@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom';
 import { IconBookmark } from '../../../../assets';
 import { IconButton, LikeButton, Title } from '../../../../common';
 import { PostActions, PostContainer, PostPreview, PostText } from './styled';
+import type { PostModel } from '../../../../types';
 
 const postsFromAPI = [
   {
-    id: '1',
+    id: 1,
     image:
       'https://tms-studapi-dev.s3.amazonaws.com/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2021-08-04_%D0%B2_16.11.10.png',
     text: 'Posts text...',
@@ -18,7 +19,7 @@ const postsFromAPI = [
     isLiked: true,
   },
   {
-    id: '2',
+    id: 2,
     image: 'https://tms-studapi-dev.s3.amazonaws.com/media/unnamed_MQSTowL.jpeg',
     text: 'Second post text...',
     date: '2021-02-10',
@@ -27,7 +28,7 @@ const postsFromAPI = [
     author: 7,
   },
   {
-    id: '3',
+    id: 3,
     image:
       'https://tms-studapi-dev.s3.amazonaws.com/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2021-08-04_%D0%B2_16.11.10.png',
     text: 'Third Posts text...',
@@ -41,33 +42,35 @@ const postsFromAPI = [
 export const Post: FC = () => {
   const { postId } = useParams<{ postId: string }>();
 
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<PostModel | undefined>(undefined);
 
-  const getPost = (id) => {
-    const newPost = postsFromAPI.find((p) => p.id === id);
+  const getPost = (id: number) => {
+    const newPost = postsFromAPI.find((p: PostModel) => p.id === id);
     setPost(newPost);
   };
 
   useEffect(() => {
-    getPost(postId);
+    getPost(Number(postId));
   }, []);
 
   return (
     <PostContainer>
-      <Title className="post-title-for-children" text={post?.title} indent />
+      <Title className="post-title-for-children" text={post?.title ?? ''} indent />
       <PostPreview src={post?.image} alt="post-preview" />
       <PostText>{post?.text}</PostText>
 
       <PostActions>
         <div>
+          <LikeButton isLiked={false} />
           <LikeButton isLiked />
-          <LikeButton dislike isLiked />
         </div>
 
         <IconButton
           icon={IconBookmark}
           title="Add to favorites"
-          // onClick={}
+          onClick={() => {
+            alert('added to favs');
+          }}
         />
       </PostActions>
     </PostContainer>

@@ -11,14 +11,6 @@ export const LoginContainer = styled.div`
   background-color: #dadada;
 `;
 
-export const Wrapper = styled.div`
-  width: 500px;
-  margin: 40px;
-  padding: 40px;
-
-  background-color: aliceblue;
-`;
-
 export const ForgotPass = styled.div`
   margin-top: 16px;
 `;
