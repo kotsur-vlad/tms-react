@@ -36,13 +36,13 @@ export const Login: FC<LoginProps> = (props) => {
       />
 
       <ForgotPass>
-        <Link text="Forgot password?" type="secondary" />
+        <Link to="reset-password" text="Forgot password?" type="secondary" />
       </ForgotPass>
 
       <Button title="Sign In" onClick={loginHandler} />
 
       <HaveAccount>
-        Don’t have an account? <Link text="Sign Up" />
+        Don’t have an account? <Link to="register" text="Sign Up" />
       </HaveAccount>
     </LoginContainer>
   );

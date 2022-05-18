@@ -7,7 +7,7 @@ type LinkType = 'primary' | 'secondary';
 interface LinkProps {
   type?: LinkType;
   text: string;
-  to?: string;
+  to: string;
 }
 
 export const Link: FC<LinkProps> = (props) => {

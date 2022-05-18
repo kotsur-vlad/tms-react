@@ -13,10 +13,6 @@ export const MenuWrapper = styled.ul`
 
 export const MenuItem = styled.li`
   display: block;
-
-  .active-link {
-    color: red;
-  }
 `;
 
 export const MenuLink = styled(Link)`
@@ -26,7 +22,20 @@ export const MenuLink = styled(Link)`
 export const MenuNavLink = styled(NavLink)`
   text-decoration: none;
 
-  &.active-link {
-    color: red;
+  // 1й костыль для активной ссылки, используя NavLink со styled-components
+  &[aria-current] {
+    color: blue;
   }
+
+  // 2й костыль для активной ссылки, используя NavLink со styled-components
+  //&.active {
+  //  color: red;
+  //  text-decoration: underline;
+  //}
+
+  // а должно работать с любым классом, который мы захотим использовать
+  //&.active-link {
+  //  color: red;
+  //  text-decoration: underline;
+  //}
 `;
