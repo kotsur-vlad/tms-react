@@ -1,18 +1,22 @@
-import { CLEAR_USER } from '../types';
+import { GET_USER } from '../types';
 
 const initialState = {
   user: {
-    id: '1',
-    username: 'Ivan Ivanov',
-    email: 'ivan@mail.ru',
+    id: '',
+    username: '',
+    email: '',
   },
 };
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CLEAR_USER:
-      return null;
-  }
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
 
-  return state;
+    default:
+      return state;
+  }
 };

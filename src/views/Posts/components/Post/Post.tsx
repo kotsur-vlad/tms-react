@@ -1,63 +1,26 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { postsSelector, setCurrentPostAC } from '../../../../store';
 import { IconBookmark } from '../../../../assets';
 import { IconButton, LikeButton, Title } from '../../../../common';
 import { PostActions, PostContainer, PostPreview, PostText } from './styled';
-import type { PostModel } from '../../../../types';
-
-const postsFromAPI = [
-  {
-    id: 1,
-    image:
-      'https://tms-studapi-dev.s3.amazonaws.com/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2021-08-04_%D0%B2_16.11.10.png',
-    text: 'Posts text...',
-    date: '2021-10-06',
-    lesson_num: 123,
-    title: 'Post text title.....',
-    author: 7,
-    isLiked: true,
-  },
-  {
-    id: 2,
-    image: 'https://www.sitesaga.com/wp-content/uploads/2020/04/whatisablog.png',
-    text: 'Second post text...',
-    date: '2021-02-10',
-    lesson_num: 123,
-    title: 'Second post title.....',
-    author: 7,
-  },
-  {
-    id: 3,
-    image:
-      'https://tms-studapi-dev.s3.amazonaws.com/media/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2021-08-04_%D0%B2_16.11.10.png',
-    text: 'Third Posts text...',
-    date: '2021-11-22',
-    lesson_num: 123,
-    title: 'Third Post text title.....',
-    author: 7,
-  },
-];
 
 export const Post: FC = () => {
+  const dispatch = useDispatch();
   const { postId } = useParams<{ postId: string }>();
-
-  const [post, setPost] = useState<PostModel | undefined>(undefined);
-
-  const getPost = (id: number) => {
-    const newPost = postsFromAPI.find((p: PostModel) => p.id === id);
-    setPost(newPost);
-  };
+  const posts = useSelector(postsSelector);
 
   useEffect(() => {
-    getPost(Number(postId));
+    dispatch(setCurrentPostAC(Number(postId)));
   }, []);
 
   return (
     <PostContainer>
-      <Title className="post-title-for-children" text={post?.title ?? ''} indent />
-      <PostPreview src={post?.image} alt="post-preview" />
-      <PostText>{post?.text}</PostText>
+      <Title className="post-title-for-children" text={posts.currentPost?.title ?? ''} indent />
+      <PostPreview src={posts.currentPost?.image} alt="post-preview" />
+      <PostText>{posts.currentPost?.text}</PostText>
 
       <PostActions>
         <div>

@@ -1,29 +1,32 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // import { connect } from 'react-redux';
-import { clearUserAC } from '../../../store/actions/user.actions';
-import { userSelector } from '../../../store/selectors';
+import { logoutAC, userInfoSelector } from '../../../store';
 import { useLanguage } from '../../../context/LanguageContext';
+
 import { Button } from '../../ui/Button';
 import { Username } from '../Username';
 import { Menu } from '../Menu';
 import { StyledHeaderContainer } from './styled';
-import type { UserModel } from '../../../types';
+// import type { UserModel } from '../../../types';
 
-interface HeaderProps {
-  user: UserModel;
-  clearUser: () => void;
-}
+// interface HeaderProps {
+//   user: UserModel;
+//   clearUser: () => void;
+// }
 
 const Header: FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector(userSelector);
+  const userInfo = useSelector(userInfoSelector);
 
   const { changeLang } = useLanguage();
 
-  const clearUserHandler = () => {
-    dispatch(clearUserAC());
+  const logoutHandler = () => {
+    dispatch(logoutAC());
+    navigate('/');
   };
 
   const changeLanguageHandler = () => {
@@ -34,10 +37,11 @@ const Header: FC = () => {
     <StyledHeaderContainer>
       <Menu />
 
-      <Button title="clear user" onClick={clearUserHandler} />
       <Button title="change language" onClick={changeLanguageHandler} />
 
-      <Username name={user?.user?.username} />
+      <Username name={userInfo.username} />
+
+      <Button title="Log out" onClick={logoutHandler} />
     </StyledHeaderContainer>
   );
 };

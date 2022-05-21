@@ -1,3 +1,7 @@
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+
+import { authSelector } from '../store';
 import type { MenuModel } from './types';
 
 export const menuItems: MenuModel[] = [
@@ -11,13 +15,13 @@ export const menuItems: MenuModel[] = [
     name: 'addPost',
     title: 'Add Post',
     path: '/add-post',
-    private: false,
+    private: true,
   },
   {
     name: 'posts',
     title: 'Posts',
     path: 'posts',
-    private: true,
+    private: false,
   },
   {
     name: 'login',
@@ -38,3 +42,17 @@ export const menuItems: MenuModel[] = [
     private: false,
   },
 ];
+
+export const useAppMenu = () => {
+  const auth = useSelector(authSelector);
+
+  const targetMenu = useMemo(() => {
+    return menuItems.filter((m) => {
+      return auth.auth ? m : !m.private;
+    });
+  }, [auth.auth]);
+
+  return {
+    menu: targetMenu,
+  };
+};

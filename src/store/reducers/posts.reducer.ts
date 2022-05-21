@@ -1,4 +1,5 @@
-import { GET_POSTS, SET_CURRENT_POST } from '../types';
+import { ADD_POST, GET_POSTS, SET_CURRENT_POST } from '../types';
+import type { PostModel } from '../../types';
 
 const initialState = {
   posts: [],
@@ -12,12 +13,20 @@ export const postsReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+
     case SET_CURRENT_POST:
       return {
         ...state,
-        currentPost: action.payload,
+        currentPost: state.posts.find((p: PostModel) => p.id === action.payload),
       };
-  }
 
-  return state;
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      };
+
+    default:
+      return state;
+  }
 };

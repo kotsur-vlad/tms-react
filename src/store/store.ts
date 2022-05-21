@@ -1,10 +1,23 @@
-import { createStore, combineReducers } from 'redux';
-import { postsReducer, userReducer } from './reducers';
+import { combineReducers, createStore } from 'redux';
 
-const rootReducer = combineReducers({
+import { authReducer, postsReducer, userReducer } from './reducers';
+import { LOGOUT } from './types';
+
+const combinedReducer = combineReducers({
+  auth: authReducer,
   posts: postsReducer,
   user: userReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOGOUT) {
+    // const postsState = state.posts; // save posts state after logout
+    state = {};
+    // state = { ...state, posts: postsState };
+  }
+
+  return combinedReducer(state, action);
+};
 
 export const store = createStore(rootReducer);
 

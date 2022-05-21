@@ -59,7 +59,7 @@ export const AppRoot: FC = () => {
           <LanguageProvider>
             <ThemeProvider theme={theme}>
               <GlobalStyles />
-              <Routes store={_store} />
+              <Routes />
             </ThemeProvider>
           </LanguageProvider>
         </BrowserRouter>

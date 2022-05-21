@@ -1,5 +1,9 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes as RoutesSource } from 'react-router-dom';
+
+import { authSelector, getPostsAC, getUserAC, setAuthAC } from '../store';
+import { _store } from '../AppRoot';
 
 import { ProtectedRoute } from './ProtectedRoute';
 import {
@@ -12,46 +16,32 @@ import {
   Register,
   ResetPassword,
 } from '../views';
-import type { TODO_ANY } from '../types';
 
-interface RoutesProps {
-  store: TODO_ANY;
-}
+export const Routes: FC = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector(authSelector);
 
-export const Routes: FC<RoutesProps> = (props) => {
-  const { store } = props;
+  useEffect(() => {
+    dispatch(setAuthAC(true));
+    dispatch(getPostsAC(_store.posts));
+    dispatch(getUserAC(_store.user));
+
+    // типичные ошибки при с dispatch:
+    // dispatch(getPostsAC);
+    // getPostsAC('value');
+  }, []);
 
   return (
     <RoutesSource>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<div>HOME PAGE</div>} />
 
-        {/*Первый вариант - обернуть защищаемые страницы Роутом, у которого*/}
-        {/*в качестве element передан наш ProtectedRoute*/}
-        <Route element={<ProtectedRoute isAllow={store.auth} pathToRedirect="/" />}>
-          <Route path="posts" element={<Posts />} />
-          <Route path="posts/:postId" element={<Post />} />
+        <Route path="posts" element={<Posts />} />
+        <Route path="posts/:postId" element={<Post />} />
+
+        <Route element={<ProtectedRoute isAllow={auth.auth} pathToRedirect="/" />}>
+          <Route path="add-post" element={<AddPost />} />
         </Route>
-
-        {/*Второй вариант - оборачивать защищаемую страницу, внутри свойства element*/}
-        {/*<Route*/}
-        {/*  path="posts"*/}
-        {/*  element={*/}
-        {/*    <ProtectedRoute isAllow={store.auth} pathToRedirect="/">*/}
-        {/*      <Posts posts={store.posts} />*/}
-        {/*    </ProtectedRoute>*/}
-        {/*  }*/}
-        {/*/>*/}
-        {/*<Route*/}
-        {/*  path="posts/:postId"*/}
-        {/*  element={*/}
-        {/*    <ProtectedRoute isAllow={store.auth} pathToRedirect="/">*/}
-        {/*      <Post />*/}
-        {/*    </ProtectedRoute>*/}
-        {/*  }*/}
-        {/*/>*/}
-
-        <Route path="add-post" element={<AddPost />} />
 
         <Route path="login" element={<LoginContainer />} />
         <Route path="register" element={<Register />} />

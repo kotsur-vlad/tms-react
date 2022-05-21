@@ -1,3 +1,3 @@
-import { CLEAR_USER } from '../types';
+import { GET_USER } from '../types';
 
-export const clearUserAC = () => ({ type: CLEAR_USER });
+export const getUserAC = (userInfo) => ({ type: GET_USER, payload: userInfo });

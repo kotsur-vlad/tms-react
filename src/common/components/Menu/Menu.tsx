@@ -1,11 +1,13 @@
 import { FC } from 'react';
 
-import { menuItems } from '../../../router/menu';
+import { useAppMenu } from '../../../router/menu';
 import { MenuItem, MenuNavLink, MenuWrapper } from './styled';
 import type { MenuModel } from '../../../router/types';
 
 export const Menu: FC = () => {
-  const menuElements = menuItems.map((m: MenuModel) => {
+  const { menu } = useAppMenu();
+
+  const menuElements = menu.map((m: MenuModel) => {
     return (
       <MenuItem key={m.name}>
         <MenuNavLink
