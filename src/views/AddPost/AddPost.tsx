@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { addPostAC, userSelector } from '../../store';
+import { addPostAC, userInfoSelector } from '../../store';
 import { useInputValue } from '../../utils/hooks/useInputValue';
 
 import { Button, Input, Title } from '../../common';
@@ -12,7 +12,7 @@ import type { PostModel } from '../../types';
 export const AddPost: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(userSelector);
+  const userInfo = useSelector(userInfoSelector);
 
   const [title, titleHandler] = useInputValue();
   const [url, urlHandler] = useInputValue();
@@ -38,7 +38,7 @@ export const AddPost: FC = () => {
       date,
       image,
       title,
-      author: user.user.id,
+      author: userInfo.id,
       text,
       lesson_num: 44,
       isLiked: false,

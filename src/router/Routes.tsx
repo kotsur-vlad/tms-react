@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes as RoutesSource } from 'react-router-dom';
 
-import { authSelector, getPostsAC, getUserAC, setAuthAC } from '../store';
+import { authStatusSelector, getPostsAC, getUserAC, setAuthAC } from '../store';
 import { _store } from '../AppRoot';
 
 import { ProtectedRoute } from './ProtectedRoute';
@@ -19,7 +19,7 @@ import {
 
 export const Routes: FC = () => {
   const dispatch = useDispatch();
-  const auth = useSelector(authSelector);
+  const isAuth = useSelector(authStatusSelector);
 
   useEffect(() => {
     dispatch(setAuthAC(true));
@@ -39,7 +39,7 @@ export const Routes: FC = () => {
         <Route path="posts" element={<Posts />} />
         <Route path="posts/:postId" element={<Post />} />
 
-        <Route element={<ProtectedRoute isAllow={auth.auth} pathToRedirect="/" />}>
+        <Route element={<ProtectedRoute isAllow={isAuth} pathToRedirect="/" />}>
           <Route path="add-post" element={<AddPost />} />
         </Route>
 

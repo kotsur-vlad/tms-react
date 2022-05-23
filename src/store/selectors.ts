@@ -1,11 +1,14 @@
 import { createSelector } from 'reselect';
 
 // posts
-export const authSelector = (state) => state.auth;
+export const authStateSelector = (state) => state.auth;
+export const authStatusSelector = createSelector(authStateSelector, (state) => state.auth);
 
 // posts
-export const postsSelector = (state) => state.posts;
+export const postsStateSelector = (state) => state.posts;
+export const currentPostSelector = createSelector(postsStateSelector, (state) => state.currentPost);
+export const allPostsSelector = createSelector(postsStateSelector, (state) => state.posts);
 
 //user
-export const userSelector = (state) => state.user;
-export const userInfoSelector = createSelector(userSelector, (state) => state.user);
+export const userStateSelector = (state) => state.user;
+export const userInfoSelector = createSelector(userStateSelector, (state) => state.user);
