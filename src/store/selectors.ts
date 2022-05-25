@@ -8,6 +8,10 @@ export const authStatusSelector = createSelector(authStateSelector, (state) => s
 export const postsStateSelector = (state) => state.posts;
 export const currentPostSelector = createSelector(postsStateSelector, (state) => state.currentPost);
 export const allPostsSelector = createSelector(postsStateSelector, (state) => state.posts);
+export const favouritesPostsSelector = createSelector(
+  postsStateSelector,
+  (state) => state.favourites
+);
 
 //user
 export const userStateSelector = (state) => state.user;

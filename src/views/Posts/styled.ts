@@ -3,7 +3,24 @@ import styled from 'styled-components';
 export const StyledPostsContainer = styled.div`
   width: 100%;
 
-  background-color: lightcyan;
+  //background-color: lightcyan;
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  margin: 20px 0;
+  padding: 20px 40px;
+`;
+
+export const TabsSwitcher = styled.button`
+  min-width: 100px;
+
+  &.active {
+    border-bottom: 1px solid;
+  }
 `;
 
 export const NoPosts = styled.div`

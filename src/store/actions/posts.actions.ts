@@ -1,4 +1,10 @@
-import { ADD_POST, GET_POSTS, SET_CURRENT_POST } from '../types';
+import {
+  ADD_POST,
+  ADD_POST_TO_FAVOURITES,
+  GET_POSTS,
+  REMOVE_POST_FROM_FAVOURITES,
+  SET_CURRENT_POST,
+} from '../types';
 
 export const getPostsAC = (payload) => {
   return {
@@ -17,6 +23,20 @@ export const setCurrentPostAC = (payload) => {
 export const addPostAC = (payload) => {
   return {
     type: ADD_POST,
+    payload,
+  };
+};
+
+export const addPostToFavsAC = (payload) => {
+  return {
+    type: ADD_POST_TO_FAVOURITES,
+    payload,
+  };
+};
+
+export const removePostFromFavsAC = (payload) => {
+  return {
+    type: REMOVE_POST_FROM_FAVOURITES,
     payload,
   };
 };

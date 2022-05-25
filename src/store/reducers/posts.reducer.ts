@@ -1,8 +1,15 @@
-import { ADD_POST, GET_POSTS, SET_CURRENT_POST } from '../types';
+import {
+  ADD_POST,
+  ADD_POST_TO_FAVOURITES,
+  GET_POSTS,
+  REMOVE_POST_FROM_FAVOURITES,
+  SET_CURRENT_POST,
+} from '../types';
 import type { PostModel } from '../../types';
 
 const initialState = {
   posts: [],
+  favourites: [],
   currentPost: null,
 };
 
@@ -24,6 +31,21 @@ export const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, action.payload],
+      };
+
+    case ADD_POST_TO_FAVOURITES:
+      return {
+        ...state,
+        favourites: [
+          ...state.favourites,
+          state.posts.find((p: PostModel) => p.id === action.payload),
+        ],
+      };
+
+    case REMOVE_POST_FROM_FAVOURITES:
+      return {
+        ...state,
+        favourites: state.favourites.filter((p: PostModel) => p.id !== action.payload),
       };
 
     default:

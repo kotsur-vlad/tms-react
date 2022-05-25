@@ -7,14 +7,11 @@ import type { PostModel } from '../../../../types';
 
 interface PostCardProps {
   post: PostModel;
+  onFavsToggle: (id: number) => void;
 }
 
 export const PostCard: FC<PostCardProps> = (props) => {
-  const { post } = props;
-
-  const addToFavoritesHandler = () => {
-    alert('added to favs');
-  };
+  const { post, onFavsToggle } = props;
 
   return (
     <PostCardContainer>
@@ -22,7 +19,7 @@ export const PostCard: FC<PostCardProps> = (props) => {
       <PostDate>{post.date}</PostDate>
       <PostTitle to={`/posts/${post.id}`}>{post.title}</PostTitle>
 
-      <button onClick={addToFavoritesHandler}>add to fav</button>
+      <button onClick={() => onFavsToggle(post.id)}>favourites toggle</button>
     </PostCardContainer>
   );
 };
