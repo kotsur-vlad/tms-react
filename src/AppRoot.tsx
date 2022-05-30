@@ -22,7 +22,7 @@ export const _store = {
       lesson_num: 123,
       title: 'Post text title.....',
       author: 7,
-      isLiked: true,
+      isLiked: null,
     },
     {
       id: 2,
@@ -32,6 +32,7 @@ export const _store = {
       lesson_num: 123,
       title: 'Second post title.....',
       author: 7,
+      isLiked: null,
     },
     {
       id: 3,
@@ -42,6 +43,7 @@ export const _store = {
       lesson_num: 123,
       title: 'Third Post text title.....',
       author: 7,
+      isLiked: null,
     },
   ],
   user: {

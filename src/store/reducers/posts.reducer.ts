@@ -4,6 +4,7 @@ import {
   GET_POSTS,
   REMOVE_POST_FROM_FAVOURITES,
   SET_CURRENT_POST,
+  TOGGLE_POST_LIKE,
 } from '../types';
 import type { PostModel } from '../../types';
 
@@ -46,6 +47,21 @@ export const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         favourites: state.favourites.filter((p: PostModel) => p.id !== action.payload),
+      };
+
+    case TOGGLE_POST_LIKE:
+      return {
+        ...state,
+        posts: state.posts.map((p) =>
+          p.id === action.payload.id ? { ...p, isLiked: action.payload.value } : p
+        ),
+        favourites: state.favourites.map((p) =>
+          p.id === action.payload.id ? { ...p, isLiked: action.payload.value } : p
+        ),
+        currentPost:
+          state.currentPost?.id === action.payload.id
+            ? { ...state.currentPost, isLiked: action.payload.value }
+            : state.currentPost,
       };
 
     default:

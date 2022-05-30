@@ -1,17 +1,27 @@
 import { FC } from 'react';
 
-import { PostCardContainer, PostDate, PostPreview, PostTitle } from './styled';
-import { ImageDefaultPreview } from '../../../../assets';
-
+import { IconBookmark, ImageDefaultPreview } from '../../../../assets';
+import { IconButton, LikeButton } from '../../../../common';
+import {
+  LikesContainer,
+  PostActions,
+  PostCardContainer,
+  PostDate,
+  PostPreview,
+  PostTitle,
+} from './styled';
 import type { PostModel } from '../../../../types';
 
 interface PostCardProps {
   post: PostModel;
+  favourite?: boolean;
+  liked: boolean;
   onFavsToggle: (id: number) => void;
+  onLikeToggle: (id: number, value: boolean) => void;
 }
 
 export const PostCard: FC<PostCardProps> = (props) => {
-  const { post, onFavsToggle } = props;
+  const { post, favourite = false, liked = false, onFavsToggle, onLikeToggle } = props;
 
   return (
     <PostCardContainer>
@@ -19,7 +29,22 @@ export const PostCard: FC<PostCardProps> = (props) => {
       <PostDate>{post.date}</PostDate>
       <PostTitle to={`/posts/${post.id}`}>{post.title}</PostTitle>
 
-      <button onClick={() => onFavsToggle(post.id)}>favourites toggle</button>
+      <PostActions>
+        <LikesContainer>
+          <LikeButton onToggleLike={(value) => onLikeToggle(post.id, value)} liked={liked} />
+          <LikeButton
+            onToggleLike={(value) => onLikeToggle(post.id, value)}
+            liked={liked}
+            type="dislike"
+          />
+        </LikesContainer>
+
+        <IconButton
+          icon={IconBookmark}
+          title="Favorites toggle"
+          onClick={() => onFavsToggle(post.id)}
+        />
+      </PostActions>
     </PostCardContainer>
   );
 };

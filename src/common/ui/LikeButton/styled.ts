@@ -8,10 +8,14 @@ export const StyledLikeButton = styled.button`
 
   background: #e8e8e8;
   border-radius: 2px;
+
+  &.active {
+    background: #eedb7b;
+  }
 `;
 
-export const ButtonImage = styled.img`
-  &.disLike {
-    transform: rotate(180deg);
-  }
+export const LikeImage = styled.img``;
+
+export const DislikeImage = styled.img`
+  transform: rotate(180deg);
 `;

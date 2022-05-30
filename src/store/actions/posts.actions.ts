@@ -4,6 +4,7 @@ import {
   GET_POSTS,
   REMOVE_POST_FROM_FAVOURITES,
   SET_CURRENT_POST,
+  TOGGLE_POST_LIKE,
 } from '../types';
 
 export const getPostsAC = (payload) => {
@@ -37,6 +38,13 @@ export const addPostToFavsAC = (payload) => {
 export const removePostFromFavsAC = (payload) => {
   return {
     type: REMOVE_POST_FROM_FAVOURITES,
+    payload,
+  };
+};
+
+export const togglePostLikeAC = (payload) => {
+  return {
+    type: TOGGLE_POST_LIKE,
     payload,
   };
 };

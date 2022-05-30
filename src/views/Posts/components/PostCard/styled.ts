@@ -29,3 +29,14 @@ export const PostTitle = styled(Link)`
   line-height: 28px;
   color: #313037;
 `;
+
+export const PostActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+`;
+
+export const LikesContainer = styled.div`
+  display: flex;
+`;

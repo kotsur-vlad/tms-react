@@ -7,6 +7,7 @@ import {
   allPostsSelector,
   favouritesPostsSelector,
   removePostFromFavsAC,
+  togglePostLikeAC,
 } from '../../store';
 import { PostCard } from './components/PostCard';
 import { NoPosts, StyledPostsContainer, Tabs, TabsSwitcher } from './styled';
@@ -37,17 +38,33 @@ export const Posts: FC = () => {
     [favouritesPosts]
   );
 
+  const toggleLikeHandler = useCallback((id, value) => {
+    dispatch(togglePostLikeAC({ id, value }));
+  }, []);
+
   const allPostsElements = useMemo(() => {
-    return posts?.map((post) => (
-      <PostCard key={post.id} post={post} onFavsToggle={toggleFavouritesHandler} />
+    return posts?.map((p) => (
+      <PostCard
+        key={p.id}
+        post={p}
+        liked={p.isLiked}
+        onFavsToggle={toggleFavouritesHandler}
+        onLikeToggle={toggleLikeHandler}
+      />
     ));
-  }, [posts, toggleFavouritesHandler]);
+  }, [posts, toggleFavouritesHandler, toggleLikeHandler]);
 
   const favouritesPostsElements = useMemo(() => {
-    return favouritesPosts?.map((post) => (
-      <PostCard key={post.id} post={post} onFavsToggle={toggleFavouritesHandler} />
+    return favouritesPosts?.map((p) => (
+      <PostCard
+        key={p.id}
+        post={p}
+        liked={p.isLiked}
+        onFavsToggle={toggleFavouritesHandler}
+        onLikeToggle={toggleLikeHandler}
+      />
     ));
-  }, [favouritesPosts, toggleFavouritesHandler]);
+  }, [favouritesPosts, toggleFavouritesHandler, toggleLikeHandler]);
 
   const hasPosts = !!posts?.length;
   if (hasPosts) {
