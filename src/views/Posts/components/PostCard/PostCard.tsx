@@ -31,9 +31,9 @@ export const PostCard: FC<PostCardProps> = (props) => {
 
       <PostActions>
         <LikesContainer>
-          <LikeButton onToggleLike={(value) => onLikeToggle(post.id, value)} liked={liked} />
+          <LikeButton onToggleLike={(value) => onLikeToggle(post.id!, value)} liked={liked} />
           <LikeButton
-            onToggleLike={(value) => onLikeToggle(post.id, value)}
+            onToggleLike={(value) => onLikeToggle(post.id!, value)}
             liked={liked}
             type="dislike"
           />
@@ -42,7 +42,7 @@ export const PostCard: FC<PostCardProps> = (props) => {
         <IconButton
           icon={IconBookmark}
           title="Favorites toggle"
-          onClick={() => onFavsToggle(post.id)}
+          onClick={() => onFavsToggle(post.id!)}
         />
       </PostActions>
     </PostCardContainer>

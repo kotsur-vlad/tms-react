@@ -1,16 +1,25 @@
-import { GET_USER } from '../types';
+import { UserActions } from '../actions';
+import type { UserModel } from '../../types';
+
+// const initialState = {
+//   user: {
+//     id: '',
+//     username: '',
+//     email: '',
+//   },
+// };
 
 const initialState = {
-  user: {
-    id: '',
-    username: '',
-    email: '',
-  },
+  user: null,
 };
 
-export const userReducer = (state = initialState, action) => {
+type InitialState = {
+  user: null | UserModel;
+};
+
+export const userReducer = (state: InitialState = initialState, action: UserActions) => {
   switch (action.type) {
-    case GET_USER:
+    case 'user/GET_USER':
       return {
         ...state,
         user: action.payload,

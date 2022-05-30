@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { addPostAC, userInfoSelector } from '../../store';
+import { addPostAC, addPostsTC, userInfoSelector } from '../../store';
 import { useInputValue } from '../../utils/hooks/useInputValue';
 
 import { Button, Input, Title } from '../../common';
@@ -15,10 +15,10 @@ export const AddPost: FC = () => {
   const userInfo = useSelector(userInfoSelector);
 
   const [title, titleHandler] = useInputValue();
-  const [url, urlHandler] = useInputValue();
-  const [date, dateHandler] = useInputValue();
-  const [image, imageHandler] = useInputValue();
-  const [description, descriptionHandler] = useInputValue();
+  // const [url, urlHandler] = useInputValue();
+  // const [date, dateHandler] = useInputValue();
+  // const [image, imageHandler] = useInputValue();
+  // const [description, descriptionHandler] = useInputValue();
   const [text, textHandler] = useInputValue();
 
   const deleteHandler = () => {
@@ -31,20 +31,26 @@ export const AddPost: FC = () => {
 
   const addHandler = () => {
     if (title.length === 0) return;
-    if (date.length === 0) return;
+    // if (date.length === 0) return;
 
     const postData: PostModel = {
-      id: Math.floor(Math.random() * 1000),
-      date,
-      image,
+      // id: Math.floor(Math.random() * 1000),
+      // date,
+      // image,
       title,
-      author: userInfo.id,
-      text,
-      lesson_num: 44,
-      isLiked: false,
+      // author: userInfo?.id,
+      body: text,
+      // lesson_num: 44,
+      // isLiked: false,
+
+      // title: 'foo',
+      // body: 'bar',
+      userId: userInfo?.id,
     };
 
-    dispatch(addPostAC(postData));
+    // dispatch(addPostAC(postData));
+    // @ts-ignore
+    dispatch(addPostsTC(postData));
   };
 
   return (
@@ -52,15 +58,15 @@ export const AddPost: FC = () => {
       <Title text="Add post" indent />
 
       <Input type="text" placeholder="Title" value={title} onChange={titleHandler} />
-      <Input type="text" placeholder="URL" value={url} onChange={urlHandler} />
-      <Input type="text" placeholder="Publish date" value={date} onChange={dateHandler} />
-      <Input type="text" placeholder="Choose image" value={image} onChange={imageHandler} />
-      <Input
-        type="text"
-        placeholder="Add your text"
-        value={description}
-        onChange={descriptionHandler}
-      />
+      {/*<Input type="text" placeholder="URL" value={url} onChange={urlHandler} />*/}
+      {/*<Input type="text" placeholder="Publish date" value={date} onChange={dateHandler} />*/}
+      {/*<Input type="text" placeholder="Choose image" value={image} onChange={imageHandler} />*/}
+      {/*<Input*/}
+      {/*  type="text"*/}
+      {/*  placeholder="Add your text"*/}
+      {/*  value={description}*/}
+      {/*  onChange={descriptionHandler}*/}
+      {/*/>*/}
       <Input type="text" placeholder="Add your text" value={text} onChange={textHandler} />
 
       <Button title="Delete post" onClick={deleteHandler} />

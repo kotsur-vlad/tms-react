@@ -1,40 +1,41 @@
-import {
-  ADD_POST,
-  ADD_POST_TO_FAVOURITES,
-  GET_POSTS,
-  REMOVE_POST_FROM_FAVOURITES,
-  SET_CURRENT_POST,
-  TOGGLE_POST_LIKE,
-} from '../types';
 import type { PostModel } from '../../types';
+import type { PostsActions } from '../actions';
 
 const initialState = {
   posts: [],
   favourites: [],
   currentPost: null,
+  loading: false,
 };
 
-export const postsReducer = (state = initialState, action) => {
+type InitialState = {
+  posts: PostModel[];
+  favourites: PostModel[];
+  currentPost: null | PostModel;
+  loading: boolean;
+};
+
+export const postsReducer = (state: InitialState = initialState, action: PostsActions) => {
   switch (action.type) {
-    case GET_POSTS:
+    case 'posts/GET_POSTS':
       return {
         ...state,
         posts: action.payload,
       };
 
-    case SET_CURRENT_POST:
+    case 'posts/SET_CURRENT_POST':
       return {
         ...state,
         currentPost: state.posts.find((p: PostModel) => p.id === action.payload),
       };
 
-    case ADD_POST:
+    case 'posts/ADD_POST':
       return {
         ...state,
         posts: [...state.posts, action.payload],
       };
 
-    case ADD_POST_TO_FAVOURITES:
+    case 'posts/ADD_POST_TO_FAVOURITES':
       return {
         ...state,
         favourites: [
@@ -43,13 +44,13 @@ export const postsReducer = (state = initialState, action) => {
         ],
       };
 
-    case REMOVE_POST_FROM_FAVOURITES:
+    case 'posts/REMOVE_POST_FROM_FAVOURITES':
       return {
         ...state,
         favourites: state.favourites.filter((p: PostModel) => p.id !== action.payload),
       };
 
-    case TOGGLE_POST_LIKE:
+    case 'posts/TOGGLE_POST_LIKE':
       return {
         ...state,
         posts: state.posts.map((p) =>
@@ -62,6 +63,12 @@ export const postsReducer = (state = initialState, action) => {
           state.currentPost?.id === action.payload.id
             ? { ...state.currentPost, isLiked: action.payload.value }
             : state.currentPost,
+      };
+
+    case 'posts/SET_LOADING':
+      return {
+        ...state,
+        loading: action.payload,
       };
 
     default:

@@ -8,9 +8,11 @@ import {
   favouritesPostsSelector,
   removePostFromFavsAC,
   togglePostLikeAC,
+  AppState,
 } from '../../store';
 import { PostCard } from './components/PostCard';
 import { NoPosts, StyledPostsContainer, Tabs, TabsSwitcher } from './styled';
+import type { PostModel } from '../../types';
 
 type Tabs = 'all' | 'favourites';
 
@@ -18,8 +20,9 @@ export const Posts: FC = () => {
   const dispatch = useDispatch();
 
   const [currentTab, setCurrentTabs] = useState<Tabs>('all');
-  const posts = useSelector(allPostsSelector);
-  const favouritesPosts = useSelector(favouritesPostsSelector);
+  const posts = useSelector<AppState, PostModel[]>(allPostsSelector);
+
+  const favouritesPosts = useSelector<AppState, PostModel[]>(favouritesPostsSelector);
 
   const changeTabHandler = () => {
     if (currentTab === 'all') setCurrentTabs('favourites');
@@ -38,7 +41,7 @@ export const Posts: FC = () => {
     [favouritesPosts]
   );
 
-  const toggleLikeHandler = useCallback((id, value) => {
+  const toggleLikeHandler = useCallback((id: number, value: boolean) => {
     dispatch(togglePostLikeAC({ id, value }));
   }, []);
 
@@ -47,7 +50,7 @@ export const Posts: FC = () => {
       <PostCard
         key={p.id}
         post={p}
-        liked={p.isLiked}
+        liked={p.isLiked!}
         onFavsToggle={toggleFavouritesHandler}
         onLikeToggle={toggleLikeHandler}
       />
@@ -59,7 +62,7 @@ export const Posts: FC = () => {
       <PostCard
         key={p.id}
         post={p}
-        liked={p.isLiked}
+        liked={p.isLiked!}
         onFavsToggle={toggleFavouritesHandler}
         onLikeToggle={toggleLikeHandler}
       />

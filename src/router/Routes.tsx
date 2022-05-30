@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes as RoutesSource } from 'react-router-dom';
 
-import { authStatusSelector, getPostsAC, getUserAC, setAuthAC } from '../store';
+import { authStatusSelector, setPostsAC, getPostsTC, getUserAC, setAuthAC } from '../store';
 import { _store } from '../AppRoot';
 
 import { ProtectedRoute } from './ProtectedRoute';
@@ -23,12 +23,10 @@ export const Routes: FC = () => {
 
   useEffect(() => {
     dispatch(setAuthAC(true));
-    dispatch(getPostsAC(_store.posts));
+    // dispatch(setPostsAC(_store.posts));
+    // @ts-ignore
+    dispatch(getPostsTC());
     dispatch(getUserAC(_store.user));
-
-    // типичные ошибки при с dispatch:
-    // dispatch(getPostsAC);
-    // getPostsAC('value');
   }, []);
 
   return (

@@ -1,50 +1,121 @@
-import {
-  ADD_POST,
-  ADD_POST_TO_FAVOURITES,
-  GET_POSTS,
-  REMOVE_POST_FROM_FAVOURITES,
-  SET_CURRENT_POST,
-  TOGGLE_POST_LIKE,
-} from '../types';
+import type { PostModel } from '../../types';
 
-export const getPostsAC = (payload) => {
+export const setPostsAC = (payload: PostModel[]) => {
   return {
-    type: GET_POSTS,
+    type: 'posts/GET_POSTS',
     payload,
-  };
+  } as const;
 };
 
-export const setCurrentPostAC = (payload) => {
+export const setCurrentPostAC = (payload: number) => {
   return {
-    type: SET_CURRENT_POST,
+    type: 'posts/SET_CURRENT_POST',
     payload,
-  };
+  } as const;
 };
 
-export const addPostAC = (payload) => {
+export const addPostAC = (payload: PostModel) => {
   return {
-    type: ADD_POST,
+    type: 'posts/ADD_POST',
     payload,
-  };
+  } as const;
 };
 
-export const addPostToFavsAC = (payload) => {
+export const addPostToFavsAC = (payload: number) => {
   return {
-    type: ADD_POST_TO_FAVOURITES,
+    type: 'posts/ADD_POST_TO_FAVOURITES',
     payload,
-  };
+  } as const;
 };
 
-export const removePostFromFavsAC = (payload) => {
+export const removePostFromFavsAC = (payload: number) => {
   return {
-    type: REMOVE_POST_FROM_FAVOURITES,
+    type: 'posts/REMOVE_POST_FROM_FAVOURITES',
     payload,
-  };
+  } as const;
 };
 
-export const togglePostLikeAC = (payload) => {
+export const togglePostLikeAC = (payload: { id: number; value: boolean }) => {
   return {
-    type: TOGGLE_POST_LIKE,
+    type: 'posts/TOGGLE_POST_LIKE',
     payload,
-  };
+  } as const;
 };
+
+export const setLoadingAC = (payload: boolean) => {
+  return {
+    type: 'posts/SET_LOADING',
+    payload,
+  } as const;
+};
+
+export const getPostsTC = () => async (dispatch: any) => {
+  dispatch(setLoadingAC(true));
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+  const response = await fetch(url);
+
+  try {
+    if (response.ok) {
+      const json = await response.json();
+      dispatch(setPostsAC(json));
+      dispatch(setLoadingAC(false));
+
+      return response;
+    }
+
+    throw new Error();
+  } catch (e) {
+    console.log('Ошибка:' + e);
+    console.log('Ошибка:' + response.status);
+    dispatch(setLoadingAC(false));
+    return;
+  }
+};
+
+export const addPostsTC = (newPost: PostModel) => async (dispatch: any) => {
+  dispatch(setLoadingAC(true));
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify(newPost),
+  };
+  const response = await fetch(url, options);
+
+  try {
+    if (response.ok) {
+      // const json = await response.json();
+      // dispatch(setPostsAC(json));
+      dispatch(setLoadingAC(false));
+
+      return response;
+    }
+
+    throw new Error();
+  } catch (e) {
+    console.log('Ошибка:' + e);
+    console.log('Ошибка:' + response.status);
+    dispatch(setLoadingAC(false));
+    return;
+  }
+};
+
+//
+type SetPosts = ReturnType<typeof setPostsAC>;
+type SetCurrentPost = ReturnType<typeof setCurrentPostAC>;
+type AddPost = ReturnType<typeof addPostAC>;
+type AddPostToFavs = ReturnType<typeof addPostToFavsAC>;
+type RemovePostFromFavs = ReturnType<typeof removePostFromFavsAC>;
+type TogglePostLike = ReturnType<typeof togglePostLikeAC>;
+type SetLoading = ReturnType<typeof setLoadingAC>;
+
+export type PostsActions =
+  | SetPosts
+  | SetCurrentPost
+  | AddPost
+  | AddPostToFavs
+  | RemovePostFromFavs
+  | TogglePostLike
+  | SetLoading;
