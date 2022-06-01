@@ -1,8 +1,9 @@
+import api from '../../services';
 import type { PostModel } from '../../types';
 
 export const setPostsAC = (payload: PostModel[]) => {
   return {
-    type: 'posts/GET_POSTS',
+    type: 'posts/SET_POSTS',
     payload,
   } as const;
 };
@@ -51,13 +52,11 @@ export const setLoadingAC = (payload: boolean) => {
 
 export const getPostsTC = () => async (dispatch: any) => {
   dispatch(setLoadingAC(true));
-  const url = 'https://jsonplaceholder.typicode.com/posts';
-  const response = await fetch(url);
+  const response = await api.blog.getPosts();
 
   try {
-    if (response.ok) {
-      const json = await response.json();
-      dispatch(setPostsAC(json));
+    if (response.status === 200) {
+      dispatch(setPostsAC(response.data.results));
       dispatch(setLoadingAC(false));
 
       return response;
@@ -65,8 +64,7 @@ export const getPostsTC = () => async (dispatch: any) => {
 
     throw new Error();
   } catch (e) {
-    console.log('Ошибка:' + e);
-    console.log('Ошибка:' + response.status);
+    console.log(e);
     dispatch(setLoadingAC(false));
     return;
   }

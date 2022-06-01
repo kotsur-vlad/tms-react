@@ -1,11 +1,15 @@
 import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
+import { registerTC } from '../../store';
 import { Button, Input, Link, Title } from '../../common';
 import { useInputValue } from '../../utils/hooks/useInputValue';
 import { HaveAccount, RegisterContainer } from './styled';
+import type { RegisterDTO } from '../../services/api/auth';
 
 export const Register: FC = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   console.log('search params from location:', location.search);
 
@@ -32,12 +36,12 @@ export const Register: FC = () => {
 
   const registerHandler = () => {
     const registerData = {
-      name,
+      username: name,
       email,
       password,
-      confirmPassword,
-    };
-    console.log('Registration request was sent, with this data:', registerData);
+    } as RegisterDTO;
+    // @ts-ignore
+    dispatch(registerTC(registerData));
   };
 
   return (

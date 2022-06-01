@@ -1,6 +1,7 @@
 // auth
 export const LOGOUT = 'auth/LOGOUT';
 export const SET_AUTH = 'auth/SET_AUTH';
+export const SET_ERROR = 'auth/SET_ERROR';
 
 // posts
 // export const GET_POSTS = 'posts/GET_POSTS';

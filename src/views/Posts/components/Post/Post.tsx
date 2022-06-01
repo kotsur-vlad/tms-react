@@ -16,7 +16,11 @@ export const Post: FC = () => {
     dispatch(setCurrentPostAC(Number(postId)));
   }, []);
 
-  const toggleLikeHandler = useCallback((id: number, value: boolean) => {
+  const toggleLikeHandler = useCallback((id: number | undefined, value: boolean) => {
+    if (!id) {
+      return;
+    }
+
     dispatch(togglePostLikeAC({ id, value }));
   }, []);
 
@@ -24,19 +28,18 @@ export const Post: FC = () => {
     <PostContainer>
       <Title className="post-title-for-children" text={currentPost?.title ?? ''} indent />
       <PostPreview src={currentPost?.image} alt="post-preview" />
-      {/*<PostText>{currentPost?.text}</PostText>*/}
-      <PostText>{currentPost?.body}</PostText>
+      <PostText>{currentPost?.text}</PostText>
 
       <PostActions>
         <div>
           <LikeButton
             liked={currentPost?.isLiked}
-            onToggleLike={(value) => toggleLikeHandler(currentPost.id, value)}
+            onToggleLike={(value) => toggleLikeHandler(currentPost?.id, value)}
           />
           <LikeButton
             type="dislike"
             liked={currentPost?.isLiked}
-            onToggleLike={(value) => toggleLikeHandler(currentPost.id, value)}
+            onToggleLike={(value) => toggleLikeHandler(currentPost?.id, value)}
           />
         </div>
 
