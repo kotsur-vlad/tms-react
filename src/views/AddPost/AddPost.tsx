@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { addPostsTC, userInfoSelector } from '../../store';
+import { addPostsTC, useAppDispatch, userInfoSelector } from '../../store';
 import { useInputValue } from '../../utils/hooks/useInputValue';
 
 import { Button, Input, Title } from '../../common';
@@ -10,7 +10,7 @@ import { AddPostContainer } from './styled';
 import type { PostModel } from '../../types';
 
 export const AddPost: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userInfo = useSelector(userInfoSelector);
 
@@ -31,7 +31,7 @@ export const AddPost: FC = () => {
 
   const addHandler = () => {
     if (title.length === 0) return;
-    // if (date.length === 0) return;
+    if (date.length === 0) return;
 
     const postData: PostModel = {
       id: Math.floor(Math.random() * 1000),
@@ -44,7 +44,6 @@ export const AddPost: FC = () => {
       isLiked: false,
     };
 
-    // @ts-ignore
     dispatch(addPostsTC(postData));
   };
 

@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux';
-import thunk from 'redux-thunk';
+import { useDispatch } from 'react-redux';
+import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import logger from 'redux-logger';
 import { composeWithDevTools } from '@redux-devtools/extension';
 
@@ -36,8 +37,11 @@ if (process.env.NODE_ENV === 'development') {
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middlewares)));
 
-export type AppState = ReturnType<typeof rootReducer>;
-type AppActions = AuthActions | PostsActions | UserActions;
+export const useAppDispatch = () => useDispatch<DispatchType>();
 
-// @ts-ignore
-window.store = store;
+//region Type
+type AppActions = AuthActions | PostsActions | UserActions;
+type DispatchType = ThunkDispatch<AppState, unknown, AppActions>;
+export type AppState = ReturnType<typeof rootReducer>;
+export type AppThunk = ThunkAction<void, AppState, unknown, AppActions>;
+//endregion

@@ -1,5 +1,6 @@
 import api from '../../services';
 import type { PostModel } from '../../types';
+import type { AppThunk } from '../store';
 
 export const setPostsAC = (payload: PostModel[]) => {
   return {
@@ -8,7 +9,7 @@ export const setPostsAC = (payload: PostModel[]) => {
   } as const;
 };
 
-export const setCurrentPostAC = (payload: number) => {
+export const setCurrentPostAC = (payload: Omit<PostModel, 'isLiked'>) => {
   return {
     type: 'posts/SET_CURRENT_POST',
     payload,
@@ -50,11 +51,12 @@ export const setLoadingAC = (payload: boolean) => {
   } as const;
 };
 
-export const getPostsTC = () => async (dispatch: any) => {
+export const getPostsTC = (): AppThunk => async (dispatch) => {
   dispatch(setLoadingAC(true));
-  const response = await api.blog.getPosts();
 
   try {
+    const response = await api.blog.getPosts();
+
     if (response.status === 200) {
       dispatch(setPostsAC(response.data.results));
       dispatch(setLoadingAC(false));
@@ -64,41 +66,66 @@ export const getPostsTC = () => async (dispatch: any) => {
 
     throw new Error();
   } catch (e) {
-    console.log(e);
+    console.error(e);
     dispatch(setLoadingAC(false));
-    return;
+    return e;
   }
 };
 
-export const addPostsTC = (newPost: PostModel) => async (dispatch: any) => {
-  dispatch(setLoadingAC(true));
-  const url = 'https://jsonplaceholder.typicode.com/posts';
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-    body: JSON.stringify(newPost),
-  };
-  const response = await fetch(url, options);
+export const getPostTC =
+  (id: number): AppThunk =>
+  async (dispatch) => {
+    dispatch(setLoadingAC(true));
 
-  try {
-    if (response.ok) {
-      // const json = await response.json();
-      // dispatch(setPostsAC(json));
+    try {
+      const response = await api.blog.getPost(id);
+
+      if (response.status === 200) {
+        dispatch(setCurrentPostAC(response.data));
+        dispatch(setLoadingAC(false));
+
+        return response;
+      }
+
+      throw new Error();
+    } catch (e) {
+      console.error(e);
       dispatch(setLoadingAC(false));
-
-      return response;
+      return e;
     }
+  };
 
-    throw new Error();
-  } catch (e) {
-    console.log('Ошибка:' + e);
-    console.log('Ошибка:' + response.status);
-    dispatch(setLoadingAC(false));
-    return;
-  }
-};
+export const addPostsTC =
+  (newPost: PostModel): AppThunk =>
+  async (dispatch) => {
+    dispatch(setLoadingAC(true));
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(newPost),
+    };
+
+    try {
+      const response = await fetch(url, options);
+
+      if (response.ok) {
+        // const json = await response.json();
+        // dispatch(setPostsAC(json));
+        dispatch(setLoadingAC(false));
+
+        return response;
+      }
+
+      throw new Error();
+    } catch (e) {
+      console.error('Ошибка:' + e);
+      dispatch(setLoadingAC(false));
+      return e;
+    }
+  };
 
 //
 type SetPosts = ReturnType<typeof setPostsAC>;

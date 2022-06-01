@@ -1,1 +1,1 @@
-export * from './mapPostsIntoView';
+export * from './mapPostIntoView';

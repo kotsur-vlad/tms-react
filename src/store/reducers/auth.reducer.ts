@@ -9,7 +9,7 @@ const initialState = {
 
 type InitialState = {
   auth: boolean;
-  error: null | ErrorModel<RegisterDTO>;
+  error: null | ErrorModel<RegisterDTO> | string;
 };
 
 export const authReducer = (

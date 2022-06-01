@@ -1,19 +1,24 @@
 import { FC, useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { currentPostSelector, setCurrentPostAC, togglePostLikeAC } from '../../../../store';
+import {
+  currentPostSelector,
+  getPostTC,
+  togglePostLikeAC,
+  useAppDispatch,
+} from '../../../../store';
 import { IconBookmark } from '../../../../assets';
 import { IconButton, LikeButton, Title } from '../../../../common';
 import { PostActions, PostContainer, PostPreview, PostText } from './styled';
 
 export const Post: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { postId } = useParams<{ postId: string }>();
   const currentPost = useSelector(currentPostSelector);
 
   useEffect(() => {
-    dispatch(setCurrentPostAC(Number(postId)));
+    dispatch(getPostTC(Number(postId)));
   }, []);
 
   const toggleLikeHandler = useCallback((id: number | undefined, value: boolean) => {

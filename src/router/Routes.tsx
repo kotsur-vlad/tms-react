@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Route, Routes as RoutesSource } from 'react-router-dom';
 
-import { authStatusSelector, setPostsAC, getPostsTC, getUserAC, setAuthAC } from '../store';
+import { authStatusSelector, getPostsTC, getUserAC, setAuthAC, useAppDispatch } from '../store';
 import { _store } from '../AppRoot';
 
 import { ProtectedRoute } from './ProtectedRoute';
@@ -18,13 +18,12 @@ import {
 } from '../views';
 
 export const Routes: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isAuth = useSelector(authStatusSelector);
 
   useEffect(() => {
     dispatch(setAuthAC(true));
     // dispatch(setPostsAC(_store.posts));
-    // @ts-ignore
     dispatch(getPostsTC());
     dispatch(getUserAC(_store.user));
   }, []);

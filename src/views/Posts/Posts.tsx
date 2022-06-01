@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -9,6 +9,7 @@ import {
   removePostFromFavsAC,
   togglePostLikeAC,
   AppState,
+  useAppDispatch,
 } from '../../store';
 import { PostCard } from './components/PostCard';
 import { NoPosts, StyledPostsContainer, Tabs, TabsSwitcher } from './styled';
@@ -17,7 +18,7 @@ import type { PostModel } from '../../types';
 type Tabs = 'all' | 'favourites';
 
 export const Posts: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [currentTab, setCurrentTabs] = useState<Tabs>('all');
   const posts = useSelector<AppState, PostModel[]>(allPostsSelector);

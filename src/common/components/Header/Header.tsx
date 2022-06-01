@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 // import { connect } from 'react-redux';
-import { logoutAC, userInfoSelector } from '../../../store';
+import { logoutAC, useAppDispatch, userInfoSelector } from '../../../store';
 import { useLanguage } from '../../../context/LanguageContext';
 
 import { Button } from '../../ui/Button';
@@ -19,7 +19,7 @@ import { StyledHeaderContainer } from './styled';
 
 const Header: FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const userInfo = useSelector(userInfoSelector);
 
   const { changeLang } = useLanguage();
