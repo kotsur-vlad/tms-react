@@ -13,6 +13,7 @@ export const AddPost: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userInfo = useSelector(userInfoSelector);
+  const userId = userInfo?.id;
 
   const [title, titleHandler] = useInputValue();
   const [url, urlHandler] = useInputValue();
@@ -38,7 +39,7 @@ export const AddPost: FC = () => {
       date,
       image,
       title,
-      author: userInfo?.id,
+      author: userId!,
       text,
       lesson_num: 44,
       isLiked: false,

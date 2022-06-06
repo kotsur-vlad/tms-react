@@ -50,7 +50,7 @@ export const _store = {
     },
   ],
   user: {
-    id: '1',
+    id: 1,
     username: 'Ivan Ivanov',
     email: 'ivan@mail.ru',
   },

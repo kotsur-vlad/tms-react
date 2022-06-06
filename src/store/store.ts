@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore, Middleware, Reducer } from 'redux';
 import { useDispatch } from 'react-redux';
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import logger from 'redux-logger';
@@ -14,11 +14,10 @@ const combinedReducer = combineReducers({
   user: userReducer,
 });
 
-// @ts-ignore
-const rootReducer = (state, action: AppActions) => {
+const rootReducer: Reducer = (state: AppState, action: AppActions) => {
   if (action.type === LOGOUT) {
     // const postsState = state.posts; // save posts state after logout
-    state = {};
+    state = {} as AppState;
     // state = { ...state, posts: postsState };
   }
 
@@ -42,6 +41,6 @@ export const useAppDispatch = () => useDispatch<DispatchType>();
 //region Type
 type AppActions = AuthActions | PostsActions | UserActions;
 type DispatchType = ThunkDispatch<AppState, unknown, AppActions>;
-export type AppState = ReturnType<typeof rootReducer>;
+export type AppState = ReturnType<typeof combinedReducer>;
 export type AppThunk = ThunkAction<void, AppState, unknown, AppActions>;
 //endregion
