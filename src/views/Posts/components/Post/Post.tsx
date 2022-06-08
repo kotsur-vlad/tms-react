@@ -8,9 +8,17 @@ import {
   togglePostLikeAC,
   useAppDispatch,
 } from '../../../../store';
-import { IconBookmark } from '../../../../assets';
+import { IconArrowLeft, IconArrowRight, IconBookmark } from '../../../../assets';
 import { IconButton, LikeButton, Title } from '../../../../common';
-import { PostActions, PostContainer, PostPreview, PostText } from './styled';
+import {
+  LinkContainer,
+  PostActions,
+  PostContainer,
+  PostLink,
+  PostNavigation,
+  PostPreview,
+  PostText,
+} from './styled';
 
 export const Post: FC = () => {
   const dispatch = useAppDispatch();
@@ -56,6 +64,23 @@ export const Post: FC = () => {
           }}
         />
       </PostActions>
+
+      <PostNavigation>
+        <PostLink>
+          <img src={IconArrowLeft} alt="prev" />
+          <LinkContainer>
+            <span className="button-title">Prev</span>
+            <span>Previous post title is here</span>
+          </LinkContainer>
+        </PostLink>
+        <PostLink>
+          <LinkContainer className="next-link">
+            <span className="button-title">Next</span>
+            <span>Next post title is here</span>
+          </LinkContainer>
+          <img src={IconArrowRight} alt="next" />
+        </PostLink>
+      </PostNavigation>
     </PostContainer>
   );
 };
