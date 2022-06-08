@@ -64,7 +64,7 @@ export const Register: FC = () => {
       <Button title="Sign Up" onClick={registerHandler} />
 
       <HaveAccount>
-        Already have an account? <Link to="login" text="Sign In" />
+        Already have an account? <Link to="/login" text="Sign In" />
       </HaveAccount>
     </RegisterContainer>
   );

@@ -14,7 +14,7 @@ export const userReducer = (
   action: UserActions
 ): InitialState => {
   switch (action.type) {
-    case 'user/GET_USER':
+    case 'user/SET_USER_DATA':
       return {
         ...state,
         user: action.payload,

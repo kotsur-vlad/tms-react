@@ -1,4 +1,6 @@
-import { http } from '../..';
+import axios from 'axios';
+
+import { config } from '../..';
 import type { PostModel } from '../../../types';
 
 type GetPostsDTO = {
@@ -18,5 +20,5 @@ type Response = {
 };
 
 export const getPosts = (queryString?: GetPostsDTO) => {
-  return http.get<Response>('/blog/posts', { params: queryString });
+  return axios.get<Response>('/blog/posts/', { ...config, params: queryString });
 };

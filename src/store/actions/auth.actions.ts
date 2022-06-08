@@ -1,8 +1,10 @@
 import { AxiosError } from 'axios';
 
-import api, { setToken } from '../../services';
+import api, { clearToken, getToken, setToken } from '../../services';
 import { history } from '../../AppRoot';
 import { LOGOUT, SET_AUTH, SET_ERROR } from '../types';
+import { getPostsTC } from './posts.actions';
+import { getUserInfoTC } from './user.actions';
 import type { LoginDTO, RegisterDTO } from '../../services/api/auth';
 import type { ErrorModel } from '../../types/models/error.model';
 import type { AppThunk } from '../store';
@@ -51,8 +53,12 @@ export const loginTC =
       const response = await api.auth.login(data);
 
       if (response.status === 200) {
+        dispatch(setAuthAC(true));
         setToken('access', response.data.access);
         setToken('refresh', response.data.refresh);
+
+        await dispatch(getUserInfoTC());
+
         history.push('/posts');
         return response;
       }
@@ -68,6 +74,26 @@ export const loginTC =
       return e;
     }
   };
+
+export const logoutTC = (): AppThunk => (dispatch) => {
+  dispatch(logoutAC());
+  clearToken('access');
+  clearToken('refresh');
+  history.push('/login');
+};
+
+export const initAppTC = (): AppThunk => async (dispatch) => {
+  try {
+    await dispatch(getPostsTC());
+
+    if (getToken('access')) {
+      await dispatch(getUserInfoTC());
+    }
+  } catch (e) {
+    console.error(e);
+    return e;
+  }
+};
 
 //region Types
 type LogoutAction = { type: typeof LOGOUT };

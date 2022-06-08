@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const baseLinkStyles = css`
   font-weight: 400;
@@ -7,13 +8,13 @@ const baseLinkStyles = css`
   text-decoration: none;
 `;
 
-export const PrimaryLink = styled.a`
+export const PrimaryLink = styled(Link)`
   ${baseLinkStyles};
 
   color: ${({ theme }) => theme.palette.system.primary};
 `;
 
-export const SecondaryLink = styled.a`
+export const SecondaryLink = styled(Link)`
   ${baseLinkStyles};
 
   color: ${({ theme }) => theme.palette.system.secondary};

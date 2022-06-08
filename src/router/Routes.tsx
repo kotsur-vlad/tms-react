@@ -2,11 +2,11 @@ import { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes as RoutesSource } from 'react-router-dom';
 
-import { authStatusSelector, getPostsTC, getUserAC, setAuthAC, useAppDispatch } from '../store';
-import { _store } from '../AppRoot';
+import { authStatusSelector, initAppTC, useAppDispatch } from '../store';
 
 import { ProtectedRoute } from './ProtectedRoute';
 import {
+  Activation,
   AddPost,
   AppLayout,
   LoginContainer,
@@ -22,10 +22,7 @@ export const Routes: FC = () => {
   const isAuth = useSelector(authStatusSelector);
 
   useEffect(() => {
-    dispatch(setAuthAC(true));
-    // dispatch(setPostsAC(_store.posts));
-    dispatch(getPostsTC());
-    dispatch(getUserAC(_store.user));
+    dispatch(initAppTC());
   }, []);
 
   return (
@@ -40,9 +37,12 @@ export const Routes: FC = () => {
           <Route path="add-post" element={<AddPost />} />
         </Route>
 
-        <Route path="login" element={<LoginContainer />} />
-        <Route path="register" element={<Register />} />
-        <Route path="reset-password" element={<ResetPassword />} />
+        <Route element={<ProtectedRoute isAllow={!isAuth} pathToRedirect="/posts" />}>
+          <Route path="login" element={<LoginContainer />} />
+          <Route path="register" element={<Register />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="activate/:uid/:token" element={<Activation />} />
+        </Route>
 
         <Route path="*" element={<Page404 />} />
       </Route>

@@ -10,37 +10,43 @@ export const menuItems: MenuModel[] = [
     title: 'Home',
     path: '/',
     private: false,
+    guestOnly: false,
   },
   {
     name: 'addPost',
     title: 'Add Post',
     path: '/add-post',
     private: true,
+    guestOnly: false,
   },
   {
     name: 'posts',
     title: 'Posts',
     path: 'posts',
     private: false,
+    guestOnly: false,
   },
-  {
-    name: 'login',
-    title: 'Login',
-    path: 'login',
-    private: false,
-  },
-  {
-    name: 'register',
-    title: 'Register',
-    path: 'register',
-    private: false,
-  },
-  {
-    name: 'resetPass',
-    title: 'Reset Password',
-    path: 'reset-password',
-    private: false,
-  },
+  // {
+  //   name: 'login',
+  //   title: 'Login',
+  //   path: 'login',
+  //   private: false,
+  //   guestOnly: true,
+  // },
+  // {
+  //   name: 'register',
+  //   title: 'Register',
+  //   path: 'register',
+  //   private: false,
+  //   guestOnly: true,
+  // },
+  // {
+  //   name: 'resetPass',
+  //   title: 'Reset Password',
+  //   path: 'reset-password',
+  //   private: false,
+  //   guestOnly: true,
+  // },
 ];
 
 export const useAppMenu = () => {

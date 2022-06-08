@@ -16,9 +16,9 @@ const combinedReducer = combineReducers({
 
 const rootReducer: Reducer = (state: AppState, action: AppActions) => {
   if (action.type === LOGOUT) {
-    // const postsState = state.posts; // save posts state after logout
+    const postsState = state.posts; // save posts state after logout
     state = {} as AppState;
-    // state = { ...state, posts: postsState };
+    state = { ...state, posts: postsState };
   }
 
   return combinedReducer(state, action);
