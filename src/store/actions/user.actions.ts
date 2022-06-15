@@ -2,7 +2,6 @@ import { AxiosError } from 'axios';
 
 import api from '../../services';
 import { AppThunk } from '../store';
-import { setAuthAC } from './auth.actions';
 import type { UserModel } from '../../types';
 
 export const setUserDataAC = (userInfo: UserModel) =>
@@ -13,7 +12,6 @@ export const getUserInfoTC = (): AppThunk => async (dispatch) => {
     const response = await api.auth.getUserInfo();
 
     if (response.status === 200) {
-      dispatch(setAuthAC(true));
       dispatch(setUserDataAC(response.data));
       return response;
     }

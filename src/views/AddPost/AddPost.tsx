@@ -64,9 +64,9 @@ export const AddPost: FC = () => {
       />
       <Input type="text" placeholder="Add your text" value={text} onChange={textHandler} />
 
-      <Button title="Delete post" onClick={deleteHandler} />
-      <Button title="Cancel" onClick={cancelHandler} />
-      <Button title="Add post" onClick={addHandler} />
+      <Button content="Delete post" onClick={deleteHandler} />
+      <Button content="Cancel" onClick={cancelHandler} />
+      <Button content="Add post" onClick={addHandler} />
     </AddPostContainer>
   );
 };

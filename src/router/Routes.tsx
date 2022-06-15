@@ -15,6 +15,7 @@ import {
   Posts,
   Register,
   ResetPassword,
+  SearchPage,
 } from '../views';
 
 export const Routes: FC = () => {
@@ -29,6 +30,8 @@ export const Routes: FC = () => {
     <RoutesSource>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<div>HOME PAGE</div>} />
+
+        <Route path="search" element={<SearchPage />} />
 
         <Route path="posts" element={<Posts />} />
         <Route path="posts/:postId" element={<Post />} />

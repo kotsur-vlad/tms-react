@@ -2,6 +2,8 @@ import { Header } from './components/Header';
 import { Username } from './components/Username';
 import { Footer } from './components/Footer';
 import { Menu } from './components/Menu';
+import { SearchInputClick } from './components/SearchInputClick';
+import { SearchInputDebounce } from './components/SearchInputDebounce';
 
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
@@ -17,6 +19,9 @@ export {
   Username,
   Footer,
   Menu,
+  SearchInputClick,
+  SearchInputDebounce,
+  //
   Button,
   Input,
   TextArea,

@@ -1,6 +1,6 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import { http } from '../..';
+import { config } from '../../http';
 
 export type RefreshTokenDTO = {
   refresh: string;
@@ -11,5 +11,5 @@ type Response = {
 };
 
 export const refreshToken = (data: RefreshTokenDTO) => {
-  return http.post<RefreshTokenDTO, AxiosResponse<Response>>('/auth/jwt/refresh/', data);
+  return axios.post<RefreshTokenDTO, AxiosResponse<Response>>('/auth/jwt/refresh/', data, config);
 };

@@ -39,7 +39,7 @@ export const Login: FC<LoginProps> = (props) => {
         <Link to="/reset-password" text="Forgot password?" type="secondary" />
       </ForgotPass>
 
-      <Button title="Sign In" onClick={loginHandler} />
+      <Button content="Sign In" onClick={loginHandler} />
 
       <HaveAccount>
         Don’t have an account? <Link to="/register" text="Sign Up" />

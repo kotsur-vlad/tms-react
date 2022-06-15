@@ -41,7 +41,7 @@ export const ResetPassword: FC = () => {
         value={email}
         onChange={emailHandler}
       />
-      <Button title="Reset" onClick={resetPasswordHandler} />
+      <Button content="Reset" onClick={resetPasswordHandler} />
     </ResetPasswordContainer>
   );
 };

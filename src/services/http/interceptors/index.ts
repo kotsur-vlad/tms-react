@@ -1,4 +1,4 @@
 import { authInterceptor } from './auth';
-import { notAuthInterceptor } from './nonAuth';
+import { nonAuthInterceptor } from './nonAuth';
 
-export const interceptors = [authInterceptor, notAuthInterceptor];
+export const interceptors = [authInterceptor, nonAuthInterceptor];

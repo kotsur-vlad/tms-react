@@ -1,19 +1,19 @@
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 import { StyledButton } from './styled';
 
 interface ButtonProps {
   disabled?: boolean;
-  title: string;
+  content: ReactElement | string | number;
   onClick: () => void;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
-  const { disabled = false, title, onClick } = props;
+  const { disabled = false, content, onClick } = props;
 
   return (
     <StyledButton onClick={onClick} disabled={disabled}>
-      {title}
+      {content}
     </StyledButton>
   );
 };

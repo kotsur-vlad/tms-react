@@ -6,6 +6,7 @@ import { Page404 } from './Page404';
 import { Post, Posts } from './Posts';
 import { Register } from './Register';
 import { ResetPassword } from './ResetPassword';
+import { SearchPage } from './SearchPage';
 
 export {
   Activation,
@@ -17,4 +18,5 @@ export {
   Posts,
   Register,
   ResetPassword,
+  SearchPage,
 };

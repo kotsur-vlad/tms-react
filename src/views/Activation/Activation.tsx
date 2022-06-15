@@ -28,9 +28,9 @@ export const Activation: FC = () => {
     <ActivationContainer>
       <Title text="Activation" indent />
 
-      <Button title="Activate" disabled={loading} onClick={activateHandler} />
+      <Button content="Activate" disabled={loading} onClick={activateHandler} />
 
-      <Button title="Back to posts" disabled={loading} onClick={redirectHandler} />
+      <Button content="Back to posts" disabled={loading} onClick={redirectHandler} />
     </ActivationContainer>
   );
 };

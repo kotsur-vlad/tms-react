@@ -6,8 +6,10 @@ import { authStatusSelector, logoutTC, useAppDispatch, userInfoSelector } from '
 import { useLanguage } from '../../../context/LanguageContext';
 
 import { Button } from '../../ui/Button';
-import { Username } from '../Username';
 import { Menu } from '../Menu';
+// import { SearchInputClick } from '../SearchInputClick';
+import { SearchInputDebounce } from '../SearchInputDebounce';
+import { Username } from '../Username';
 import { StyledHeaderContainer } from './styled';
 
 const Header: FC = () => {
@@ -34,15 +36,18 @@ const Header: FC = () => {
     <StyledHeaderContainer>
       <Menu />
 
-      <Button title="change language" onClick={changeLanguageHandler} />
+      {/*<SearchInputClick />*/}
+      <SearchInputDebounce />
+
+      <Button content="change language" onClick={changeLanguageHandler} />
 
       {isAuth ? (
         <>
           <Username name={userInfo?.username} />
-          <Button title="Log out" onClick={logoutHandler} />
+          <Button content="Log out" onClick={logoutHandler} />
         </>
       ) : (
-        <Button title="Log in" onClick={loginHandler} />
+        <Button content="Log in" onClick={loginHandler} />
       )}
     </StyledHeaderContainer>
   );

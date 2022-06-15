@@ -25,7 +25,6 @@ export const registerTC =
       const response = await api.auth.register(data);
 
       if (response.status === 201) {
-        console.log(response.data);
         return response;
       }
 
@@ -88,6 +87,7 @@ export const initAppTC = (): AppThunk => async (dispatch) => {
 
     if (getToken('access')) {
       await dispatch(getUserInfoTC());
+      dispatch(setAuthAC(true));
     }
   } catch (e) {
     console.error(e);

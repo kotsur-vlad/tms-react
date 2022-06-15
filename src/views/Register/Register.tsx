@@ -61,7 +61,7 @@ export const Register: FC = () => {
         onChange={confirmPasswordHandler}
       />
 
-      <Button title="Sign Up" onClick={registerHandler} />
+      <Button content="Sign Up" onClick={registerHandler} />
 
       <HaveAccount>
         Already have an account? <Link to="/login" text="Sign In" />

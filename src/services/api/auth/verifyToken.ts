@@ -1,15 +1,11 @@
-import { AxiosResponse } from 'axios';
+import axios from 'axios';
 
-import { http } from '../..';
+import { config } from '../../http';
 
 export type VerifyTokenDTO = {
   token: string;
 };
 
-type Response = {
-  token: string;
-};
-
 export const verifyToken = (data: VerifyTokenDTO) => {
-  return http.post<VerifyTokenDTO, AxiosResponse<Response>>('/auth/jwt/verify/', data);
+  return axios.post<VerifyTokenDTO>('/auth/jwt/verify/', data, config);
 };
